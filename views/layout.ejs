@@ -18,8 +18,13 @@
 </head>
 
 <body>
-
-  <%- content %>
+  <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+    <%- include ('./shared/header')%>
+    <div class="app-main">
+      <%- include ('./shared/sidebar')%>
+      <%- content %>
+    </div>
+  </div>
 
 </body>
 
