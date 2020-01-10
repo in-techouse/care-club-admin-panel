@@ -1,2 +1,35 @@
 <% extend ('../auth_layout')%>
-h2"hello login page"
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="jumbotron" style="padding-top: 7px!important; padding-bottom: 7px!important;">
+        <div class="row">
+          <form  id="signInForm" method="POST" action="/signin" style="width: 100%;">
+            <h1 style="text-align:center">SignIn</h1>
+            <br />
+            <div class="form-group form-success-gone">
+              <label>Email</label>
+              <input name="userEmail" required type="email" placeholder="Enter your email"
+                class="form-control" />
+            </div>
+            <div class="form-group form-success-gone">
+              <label>Password</label>
+              <input name="userPassword" required type="password" placeholder="Enter your password"
+                class="form-control" minlength="6" />
+            </div>
+  
+            <% if (error != "" ){ %>
+            <div class="form-group form-success-gone">
+              <div class="alert alert-danger" role="alert">
+                <%= error %>
+              </div>
+            </div>
+            <% } %>
+  
+            <input type="submit" class="btn btn-primary btn-block" value="LOGIN" style="text-transform: uppercase;" />
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
