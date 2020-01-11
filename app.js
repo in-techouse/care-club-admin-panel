@@ -4,10 +4,17 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 require("dotenv").config();
+var session = require('express-session')
 
 var indexRouter = require("./routes/index");
 
 var app = express();
+app.use(session({
+  secret: 'white cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: true }
+}))
 
 // view engine setup
 app.engine("ejs", require("express-ejs-extend"));
