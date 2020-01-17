@@ -7,6 +7,7 @@ require("dotenv").config();
 var session = require('express-session')
 
 var indexRouter = require("./routes/index");
+var adminrouter=require("./routes/admin")
 
 var app = express();
 app.use(session({
@@ -28,6 +29,7 @@ app.use(cookieParser());
 app.use("/public", express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
+app.use("/admin",adminrouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
