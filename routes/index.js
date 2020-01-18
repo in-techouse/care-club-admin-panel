@@ -47,5 +47,20 @@ router.post('/signin', function (req, res) {
 
   });
 });
+router.get('/registeration', function (req, res) {
+  res.render('pages/registration', { error: "" });
+});
+router.post('/registeration', function (req, res){
+ // res.json(req.body)
+ firebase 
+ .auth()
+ .createUserWithEmailAndPassword(req.body.userEmail,req.body.userPassword)
+ .then(user=>{
+   res.json(user);
+ })
+ .catch(e=>{
+   res.render("pages/registration", { error: e.message });
+ });
 
+})
 module.exports = router;

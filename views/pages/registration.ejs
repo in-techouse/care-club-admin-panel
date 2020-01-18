@@ -1,21 +1,43 @@
 <% extend ('../auth_layout')%>
-<div class="row">
+<div class="row" style="padding-top: 50px;">
   <div class="col-md-3"></div>
   <div class="col-md-6">
     <div class="jumbotron" style="padding-top: 7px!important; padding-bottom: 7px!important;">
       <div class="row">
-        <form id="signInForm" method="POST" action="/signin" style="width: 100%;">
-          <h1 style="text-align:center">SignIn</h1>
+        <form id="signupform" method="POST" action="/registeration" style="width: 100%;">
+          <h1 style="text-align:center">SignUP</h1>
           <br />
           <div class="form-group form-success-gone">
-
-            <label>Email</label>
-            <input name="userEmail" required type="email" placeholder="Enter your email" class="form-control" />
+            <label>First Name</label>
+            <input name="Firstname" required type="text" placeholder="Enter Your First Name " class="form-control"
+            minlength="3" />
           </div>
           <div class="form-group form-success-gone">
+            <label>Last Name</label>
+            <input name="lastname" required type="text" placeholder="Enter Your Last Name " class="form-control"
+            minlength="3" />
+          </div>
+          
+          <div class="form-group form-success-gone">
+            <label>Email</label>
+            <input name="userEmail" required type="email" placeholder="Enter Your Email" class="form-control" />
+          </div>
+          <div class="form-group form-success-gone">
+            <label>Phone no</label>
+            <input name="Phone" required type="number" placeholder="Enter Your Phone No " class="form-control" 
+            minlength="11"/>
+          </div>
+          
+
+          <div class="form-group form-success-gone">
             <label>Password</label>
-            <input name="userPassword" required type="password" placeholder="Enter your password" class="form-control"
+            <input name="userPassword" required type="password" placeholder="Enter Your password" class="form-control"
               minlength="6" />
+          </div>
+          <div class="form-group form-success-gone">
+            <label> Confirm Password</label>
+            <input name="Password" required type="password" placeholder="Confirm Your Password" class="form-control" 
+            minlength="6"/>
           </div>
 
           <% if (error != "" ){ %>
@@ -26,7 +48,7 @@
           </div>
           <% } %>
 
-          <input type="submit" class="btn btn-primary btn-block" value="LOGIN" style="text-transform: uppercase;" />
+          <input type="submit" class="btn btn-primary btn-block" value="SignUP" style="text-transform: uppercase;" />
         </form>
       </div>
     </div>
