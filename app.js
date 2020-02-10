@@ -4,18 +4,21 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 require("dotenv").config();
-var session = require('express-session')
+var session = require("express-session");
 
 var indexRouter = require("./routes/index");
-var adminrouter=require("./routes/admin")
+var adminrouter = require("./routes/admin");
+var ngorouter = require("./routes/ngo");
+
 
 var app = express();
-app.use(session({
-  secret: 'white cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
-}))
+app.use(
+  session({
+    secret: "white cat",
+    resave: false,
+    saveUninitialized: true
+  })
+);
 
 // view engine setup
 app.engine("ejs", require("express-ejs-extend"));
@@ -29,15 +32,17 @@ app.use(cookieParser());
 app.use("/public", express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-app.use("/admin",adminrouter);
+app.use("/admin", adminrouter);
+app.use("/ngo", ngorouter);
+
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
@@ -46,7 +51,7 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("pages/error");
 });
-app.listen(process.env.PORT || 3000, function () {
+app.listen(process.env.PORT || 3000, function() {
   console.log(
     "Express server listening on port %d in %s mode",
     this.address().port,

@@ -5,39 +5,54 @@
     <div class="jumbotron" style="padding-top: 7px!important; padding-bottom: 7px!important;">
       <div class="row">
         <form id="signupform" method="POST" action="/registeration" style="width: 100%;">
-          <h1 style="text-align:center">SignUP</h1>
+          <h1 style="text-align:center; text-transform: uppercase;">Sign-Up</h1>
           <br />
           <div class="form-group form-success-gone">
-            <label>First Name</label>
-            <input name="Firstname" required type="text" placeholder="Enter Your First Name " class="form-control"
-            minlength="3" />
+            <label>NGO Category</label>
+            <select class="form-control" name="ngoCategory" required>
+              <option value="Business-Friendly International NGO">Business-Friendly International NGO</option>
+              <option value="Operational NGO">Operational NGO</option>
+              <option value="Advocacy NGO">Advocacy NGO</option>
+              <option value="Environmental NGO">Environmental NGO </option>
+              <option value="Animal NGO">Animal NGO</option>
+              <option value="WOMEN NGO">WOMEN NGO</option>
+              <option value="Health Charities">Health Charities</option>
+              <option value="Education Charities">Education Charities</option>
+              <option value="Arts & Culture Charties">Arts & Culture Charties</option>
+            </select>
           </div>
           <div class="form-group form-success-gone">
-            <label>Last Name</label>
-            <input name="lastname" required type="text" placeholder="Enter Your Last Name " class="form-control"
-            minlength="3" />
+            <label>NGO Name</label>
+            <input name="ngoName" required type="text" placeholder="Enter NGO's Name " class="form-control"
+              minlength="3" />
           </div>
-          
+
           <div class="form-group form-success-gone">
             <label>Email</label>
-            <input name="userEmail" required type="email" placeholder="Enter Your Email" class="form-control" />
+            <input name="email" required type="email" placeholder="Enter NGO's Email" class="form-control" />
           </div>
           <div class="form-group form-success-gone">
-            <label>Phone no</label>
-            <input name="Phone" required type="number" placeholder="Enter Your Phone No " class="form-control" 
-            minlength="11"/>
+            <label>Phone number</label>
+            <input name="phone" required type="number" placeholder="Enter NGO's Phone Number" class="form-control"
+              minlength="11" maxlength="11"/>
           </div>
-          
+
+          <div class="form-group form-success-gone">
+            <label>NGO Address</label>
+            <input name="address" required type="text" placeholder="Enter NGO's Address" class="form-control"
+              minlength="11"/>
+          </div>
+
 
           <div class="form-group form-success-gone">
             <label>Password</label>
-            <input name="userPassword" required type="password" placeholder="Enter Your password" class="form-control"
+            <input name="password" required type="password" placeholder="Enter password" class="form-control"
               minlength="6" />
           </div>
           <div class="form-group form-success-gone">
             <label> Confirm Password</label>
-            <input name="Password" required type="password" placeholder="Confirm Your Password" class="form-control" 
-            minlength="6"/>
+            <input name="passwordConfirmation" required type="password" placeholder="Confirm Password" class="form-control"
+              minlength="6" />
           </div>
 
           <% if (error != "" ){ %>
@@ -47,9 +62,15 @@
             </div>
           </div>
           <% } %>
-
           <input type="submit" class="btn btn-primary btn-block" value="SignUP" style="text-transform: uppercase;" />
         </form>
+      </div>
+      <div class="row" style="margin-top: 30px;">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+          <a href="/">Already have an account? <b>Click here to LOGIN</b></a>
+        </div>
+        <div class="col-md-3"></div>
       </div>
     </div>
   </div>
