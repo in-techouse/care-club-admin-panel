@@ -48,10 +48,10 @@ router.post("/signin", function(req, res) {
               .once("value")
               .then(admin => {
                 if (
-                  data === null ||
-                  data === undefined ||
-                  data.val() === null ||
-                  data.val() === undefined
+                  admin === null ||
+                  admin === undefined ||
+                  admin.val() === null ||
+                  admin.val() === undefined
                 ) {
                   req.session.id = admin.val().id;
                   req.session.email = admin.val().email;
