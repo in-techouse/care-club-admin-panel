@@ -11,20 +11,20 @@ const firebaseConfig = {
   storageBucket: process.env.STORAGE_BUCKET,
   messagingSenderId: process.env.MESSAGING_SENDER_ID,
   appId: process.env.APP_ID,
-  measurementId: process.env.MEASUREMENT_ID
+  measurementId: process.env.MEASUREMENT_ID,
 };
 firebase.initializeApp(firebaseConfig);
 
 /* GET home page. */
-router.get("/", function(req, res) {
+router.get("/", function (req, res) {
   res.render("pages/login", { error: "" });
 });
 
-router.post("/signin", function(req, res) {
+router.post("/signin", function (req, res) {
   firebase
     .auth()
     .signInWithEmailAndPassword(req.body.userEmail, req.body.userPassword)
-    .then(are => {
+    .then((are) => {
       var id = req.body.userEmail.replace("@", "-");
       id = id.replace(/\./g, "_");
       firebase
@@ -33,7 +33,7 @@ router.post("/signin", function(req, res) {
         .child("NGOS")
         .child(id)
         .once("value")
-        .then(data => {
+        .then((data) => {
           if (
             data === null ||
             data === undefined ||
@@ -46,22 +46,22 @@ router.post("/signin", function(req, res) {
               .child("Admins")
               .child(id)
               .once("value")
-              .then(admin => {
+              .then((admin) => {
                 if (
                   admin === null ||
                   admin === undefined ||
                   admin.val() === null ||
                   admin.val() === undefined
                 ) {
+                  res.render("pages/login", {
+                    error: "You are not authorized to login here",
+                  });
+                } else {
                   req.session.id = admin.val().id;
                   req.session.email = admin.val().email;
                   req.session.name = admin.val().name;
                   req.session.isAdmin = true;
                   res.redirect("/admin");
-                } else {
-                  res.render("pages/login", {
-                    error: "You are not authorized to login here"
-                  });
                 }
               });
           } else {
@@ -75,20 +75,22 @@ router.post("/signin", function(req, res) {
             res.redirect("/ngo");
           }
         })
-        .catch(err => {
+        .catch((err) => {
           res.render("pages/login", {
-            error: "You are not authorized to login here"
+            error: "You are not authorized to login here",
           });
         });
     })
-    .catch(e => {
+    .catch((e) => {
       res.render("pages/login", { error: e.message });
     });
 });
-router.get("/registeration", function(req, res) {
+
+router.get("/registeration", function (req, res) {
   res.render("pages/registration", { error: "" });
 });
-router.post("/registeration", function(req, res) {
+
+router.post("/registeration", function (req, res) {
   let email = req.body.email;
   let password = req.body.password;
   let passwordConfirmation = req.body.passwordConfirmation;
@@ -102,20 +104,20 @@ router.post("/registeration", function(req, res) {
     address: req.body.address,
     id: id,
     images: [],
-    paymentMethods: []
+    paymentMethods: [],
   };
   if (password === passwordConfirmation) {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(n => {
+      .then((n) => {
         firebase
           .database()
           .ref()
           .child("NGOS")
           .child(ngo.id)
           .set(ngo)
-          .then(r => {
+          .then((r) => {
             req.session.category = ngo.category;
             req.session.name = ngo.name;
             req.session.email = ngo.email;
@@ -126,11 +128,33 @@ router.post("/registeration", function(req, res) {
             res.redirect("/ngo");
           });
       })
-      .catch(e => {
+      .catch((e) => {
         res.render("pages/registration", { error: e.message });
       });
   } else {
     res.render("pages/registration", { error: "Password doesn't match" });
   }
 });
+
+router.get("/forgetPassword", function (req, res) {
+  res.render("pages/forgetPassword", { error: "", success: "" });
+});
+
+router.post("/forgetPassword", function (req, res) {
+  let email = req.body.userEmail;
+  firebase
+    .auth()
+    .sendPasswordResetEmail(email)
+    .then((r) => {
+      res.render("pages/forgetPassword", {
+        error: "",
+        success:
+          "A password recovery email has been sent to your email address. Check the email and follow the instructions to reset your password.",
+      });
+    })
+    .catch((e) => {
+      res.render("pages/forgetPassword", { error: e.message, success: "" });
+    });
+});
+
 module.exports = router;
