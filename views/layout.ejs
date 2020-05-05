@@ -22,7 +22,11 @@
     <%- include ('./shared/header')%>
     <div class="app-main">
       <%- include ('./shared/sidebar')%>
-      <%- content %>
+      <div class="app-main__outer">
+        <div class="app-main__inner">
+          <%- content %>
+        </div>
+      </div>
     </div>
   </div>
 
