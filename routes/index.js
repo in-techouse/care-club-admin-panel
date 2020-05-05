@@ -65,6 +65,12 @@ router.post("/signin", function (req, res) {
                 }
               });
           } else {
+            // if (data.val().approved === false) {
+            //   res.render("pages/login", {
+            //     error:
+            //       "Your account is not approved yet. You can use your account after admin approval.",
+            //   });
+            // } else {
             req.session.category = data.val().category;
             req.session.name = data.val().name;
             req.session.email = data.val().email;
@@ -73,6 +79,7 @@ router.post("/signin", function (req, res) {
             req.session.id = data.val().id;
             req.session.isNGO = true;
             res.redirect("/ngo");
+            // }
           }
         })
         .catch((err) => {
@@ -105,6 +112,7 @@ router.post("/registeration", function (req, res) {
     id: id,
     images: [],
     paymentMethods: [],
+    approved: false,
   };
   if (password === passwordConfirmation) {
     firebase
