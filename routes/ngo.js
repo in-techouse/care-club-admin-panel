@@ -55,6 +55,7 @@ router.get("/adPayment", function (req, res) {
     res.redirect("/");
   }
 });
+
 router.post("/adPayment", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
     res.render("pages/ngos/adPayment"); // render page
@@ -80,6 +81,7 @@ router.get("/addrider", function (req, res) {
     res.redirect("/");
   }
 });
+
 router.post("/addrider", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
     res.render("pages/ngos/addrider"); // render page
