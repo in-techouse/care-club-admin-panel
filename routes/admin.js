@@ -4,18 +4,33 @@ var router = express.Router();
 
 router.get("/", function (req, res) {
   if (req.session.isAdmin && req.session.isAdmin === true) {
-    res.render("pages/admin/index");
+    res.render("pages/admin/index", { action: "dashboard" });
   } else {
     res.redirect("/");
   }
 });
 
 router.get("/allngos", function (req, res) {
-  if (req.session.isAdmin && req.session.isAdmin === true) {
-    res.render("pages/admin/allngos");
-  } else {
-    res.redirect("/");
-  }
+  // if (req.session.isAdmin && req.session.isAdmin === true) {
+  let ngos = [];
+  firebase
+    .database()
+    .ref()
+    .child("NGOS")
+    .orderByKey()
+    .once("value")
+    .then((data) => {
+      data.forEach((d) => {
+        ngos.push(d.val());
+      });
+      res.render("pages/admin/allngos", { ngos: ngos, action: "allngos" });
+    })
+    .catch((e) => {
+      res.render("pages/admin/allngos", { ngos: ngos, action: "allngos" });
+    });
+  // } else {
+  //   res.redirect("/");
+  // }
 });
 
 router.get("/alluser", function (req, res) {

@@ -34,13 +34,13 @@
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading">
-                    <a href="/admin" class="mm-active">Dashboard</a>
+                    <a href="/admin" class="<%= action == "dashboard" ? "mm-active" : "" %>">Dashboard</a>
                 </li>
                 <li class="app-sidebar__heading">
-                    <a href="/admin/allngos" class="mm-active">All NGO's Details</a>
+                    <a href="/admin/allngos" class="<%= action == "allngos" ? "mm-active" : "" %>">All NGO's Details</a>
                 </li>
                 <li class="app-sidebar__heading">
-                    <a href="/admin/alluser" class="mm-active">All User's Details</a>
+                    <a href="/admin/alluser">All User's Details</a>
                 </li>
             </ul>
         </div>

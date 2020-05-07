@@ -1,1 +1,56 @@
 <% extend ('../../admin_layout')%>
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="pe-7s-car icon-gradient bg-mean-fruit">
+                </i>
+            </div>
+            <div class="row">
+                Listing all NGOs
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">ALL NGOs</h5>
+        <table class="mb-0 table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>EDIT</th>
+                    <th>DETAILS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% ngos.forEach((n)=>{%>
+                <tr>
+                    <td>
+                        <%= n.name %>
+                    </td>
+                    <td>
+                        <%= n.category %>
+                    </td>
+                    <td>
+                        <%= n.email %>
+                    </td>
+                    <td>
+                        <%= n.phone %>
+                    </td>
+                    <td>
+                        <a href="/ngoEdit?id=<%= n.id%>" class="btn btn-sm btn-warning">Edit</a>
+                    </td>
+                    <td>
+                        <a href="/ngoDetail?id=<%= n.id%>" class="btn btn-sm btn-primary">Details</a>
+                    </td>
+                </tr>
+                <%});%>
+            </tbody>
+        </table>
+    </div>
+</div>
