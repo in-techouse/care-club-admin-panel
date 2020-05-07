@@ -55,6 +55,13 @@ router.get("/adPayment", function (req, res) {
     res.redirect("/");
   }
 });
+router.post("/adPayment", function (req, res) {
+  if (req.session.isNGO && req.session.isNGO === true) {
+    res.render("pages/ngos/adPayment"); // render page
+  } else {
+    res.redirect("/");
+  }
+});
 
 // Action My Payment
 router.get("/mypayment", function (req, res) {
@@ -67,6 +74,13 @@ router.get("/mypayment", function (req, res) {
 
 // Action Add Rider
 router.get("/addrider", function (req, res) {
+  if (req.session.isNGO && req.session.isNGO === true) {
+    res.render("pages/ngos/addrider"); // render page
+  } else {
+    res.redirect("/");
+  }
+});
+router.post("/addrider", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
     res.render("pages/ngos/addrider"); // render page
   } else {
