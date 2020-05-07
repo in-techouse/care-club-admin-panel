@@ -28,6 +28,7 @@ router.get("/myfunds", function (req, res) {
     res.redirect("/");
   }
 });
+
 // Action My Profile
 router.get("/myprofile", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
@@ -36,6 +37,7 @@ router.get("/myprofile", function (req, res) {
     res.redirect("/");
   }
 });
+
 // Action Product Detail
 router.get("/productdetail", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
@@ -44,6 +46,7 @@ router.get("/productdetail", function (req, res) {
     res.redirect("/");
   }
 });
+
 // Action Add Payment Method
 router.get("/adPayment", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
@@ -52,6 +55,7 @@ router.get("/adPayment", function (req, res) {
     res.redirect("/");
   }
 });
+
 // Action My Payment
 router.get("/mypayment", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
@@ -60,6 +64,7 @@ router.get("/mypayment", function (req, res) {
     res.redirect("/");
   }
 });
+
 // Action Add Rider
 router.get("/addrider", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
@@ -68,6 +73,7 @@ router.get("/addrider", function (req, res) {
     res.redirect("/");
   }
 });
+
 // Action My Rider
 router.get("/myrider", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
@@ -76,7 +82,6 @@ router.get("/myrider", function (req, res) {
     res.redirect("/");
   }
 });
-
 
 // My profile
 // Product detail
