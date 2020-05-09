@@ -141,10 +141,31 @@ router.get("/myrider", function (req, res) {
 // Action My Products
 router.get("/myProducts", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
-    res.render("pages/ngos/myProducts", {
-      ngo: req.session,
-      action: "myProducts",
-    }); // render page
+    let products = [];
+    firebase
+      .database()
+      .ref()
+      .child("Products")
+      .orderByChild("ngoid") // ngoid
+      .equalTo(req.session.id) // req.session.id
+      .once("value")
+      .then((data) => {
+        data.forEach((d) => {
+          products.push(d.val());
+        });
+        res.render("pages/ngos/myProducts", {
+          ngo: req.session,
+          products: products,
+          action: "myProducts",
+        });
+      })
+      .catch((e) => {
+        res.render("pages/ngos/myProducts", {
+          ngo: req.session,
+          products: products,
+          action: "myPproducts",
+        });
+      });
   } else {
     res.redirect("/");
   }
