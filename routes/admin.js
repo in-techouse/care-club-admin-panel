@@ -57,20 +57,50 @@ router.get("/alluser", function (req, res) {
   // }
 });
 
-router.get("/ngosdetail", function (req, res) {
-  if (req.session.isAdmin && req.session.isAdmin === true) {
-    res.render("pages/admin/ngosdetail");
-  } else {
-    res.redirect("/");
-  }
+router.get("/ngoDetail", function (req, res) {
+  // if (req.session.isAdmin && req.session.isAdmin === true) {
+  // res.json(req.query.id);
+  firebase
+    .database()
+    .ref()
+    .child("NGOS")
+    .child(req.query.id)
+    .once("value")
+    .then((data) => {
+      res.render("pages/admin/ngoDetail", {
+        ngo: data.val(),
+        action: "ngoDetail",
+      });
+    })
+    .catch((e) => {
+      res.redirect("/admin/allngos");
+    });
+  // } else {
+  //   res.redirect("/");
+  // }
 });
 
-router.get("/userdetail", function (req, res) {
-  if (req.session.isAdmin && req.session.isAdmin === true) {
-    res.render("pages/admin/userdetail");
-  } else {
-    res.redirect("/");
-  }
+router.get("/userDetail", function (req, res) {
+  // if (req.session.isAdmin && req.session.isAdmin === true) {
+  firebase
+    .database()
+    .ref()
+    .child("Users")
+    .child(req.query.id)
+    .once("value")
+    .then((data) => {
+      res.render("pages/admin/userDetail", {
+        user: data.val(),
+        action: "userDetail",
+      });
+    })
+    .catch((e) => {
+      res.redirect("/admin/alluser");
+    });
+  // res.render("pages/admin/userDetail");
+  // } else {
+  //   res.redirect("/");
+  // }
 });
 
 module.exports = router;

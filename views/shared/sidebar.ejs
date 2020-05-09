@@ -34,35 +34,57 @@
         <div class="app-sidebar__inner">
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading">
-                    <a href="/ngo" class="mm-active">Dashboards</a>
+                    <a href="/ngo" class="<%= action == "dashboard" ? "mm-active" : "" %>">Dashboards</a>
                 </li>
                 <li class="app-sidebar__heading">
-                    <a href="/ngo/allproducts" class="mm-active">All Products</a>
+                    <a href="/ngo/allproducts" class="<%= action == "allproducts" ? "mm-active" : "" %>">All
+                        Products</a>
                 </li>
                 <li class="app-sidebar__heading">
-                    <a href="/ngo/myfunds" class="mm-active">My Funds</a>
+                    <a href="/ngo/myfunds" class="<%= action == "myfunds" ? "mm-active" : "" %>">My Funds</a>
                 </li>
                 <li class="app-sidebar__heading">
-                    <a href="/ngo/myprofile" class="mm-active">My Profile</a>
+                    <a href="/ngo/myprofile" class="<%= action == "myprofile" ? "mm-active" : "" %>">My Profile</a>
                 </li>
-                <li class="app-sidebar__heading">
-                    <a href="/ngo/productdetail" class="mm-active">Product Details</a>
+                <li class="<%= action.includes("Payment") ? "mm-active" : "" %>">
+                    <a href="#">
+                        <i class="metismenu-icon pe-7s-diamond"></i>
+                        Payment Methods
+                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="/ngo/adPayment" class="<%= action == "adPayment" ? "mm-active" : "" %>">
+                                Add New
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/ngo/mypayment" class="<%= action == "myPayment" ? "mm-active" : "" %>">
+                                Show All
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                <li class="app-sidebar__heading">
-                    <a href="/ngo/adPayment" class="mm-active">Add Payment Method</a>
-                </li>
-                <li class="app-sidebar__heading">
-                    <a href="/ngo/mypayment" class="mm-active">My Payment Method</a>
-                </li>
-                <li class="app-sidebar__heading">
-                    <a href="/ngo/addrider" class="mm-active">Add Rider</a>
-                </li>
-                <li class="app-sidebar__heading">
-                    <a href="/ngo/myrider" class="mm-active">My Rider</a>
-                </li>
-                
-        
 
+                <li class="<%= action.includes("rider") ? "mm-active" : "" %>">
+                    <a href="#">
+                        <i class="metismenu-icon pe-7s-diamond"></i>
+                        Riders
+                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="/ngo/addrider" class="<%= action == "addrider" ? "mm-active" : "" %>">
+                                Add New
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/ngo/myrider" class="<%= action == "myrider" ? "mm-active" : "" %>">
+                                Show All
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
