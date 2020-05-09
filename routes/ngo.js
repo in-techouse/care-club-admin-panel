@@ -5,7 +5,7 @@ var router = express.Router();
 // Action Dashboard
 router.get("/", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
-    res.render("pages/ngos/index", { action: "dashboard" }); 
+    res.render("pages/ngos/index", { ngo: req.session, action: "dashboard" });
   } else {
     res.redirect("/");
   }
@@ -19,20 +19,22 @@ router.get("/allproducts", function (req, res) {
       .database()
       .ref()
       .child("Products")
-      .orderByChild("taken")
-      .equalTo(false)
+      .orderByChild("taken") // ngoid
+      .equalTo(false) // req.session.id
       .once("value")
       .then((data) => {
         data.forEach((d) => {
           products.push(d.val());
         });
         res.render("pages/ngos/allproducts", {
+          ngo: req.session,
           products: products,
           action: "allproducts",
         });
       })
       .catch((e) => {
         res.render("pages/ngos/allproducts", {
+          ngo: req.session,
           products: products,
           action: "allproducts",
         });
@@ -45,7 +47,7 @@ router.get("/allproducts", function (req, res) {
 // Action My Funds
 router.get("/myfunds", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
-    res.render("pages/ngos/myfunds", { action: "myfunds" }); // render page
+    res.render("pages/ngos/myfunds", { ngo: req.session, action: "myfunds" }); // render page
   } else {
     res.redirect("/");
   }
@@ -54,7 +56,10 @@ router.get("/myfunds", function (req, res) {
 // Action My Profile
 router.get("/myprofile", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
-    res.render("pages/ngos/myprofile", { action: "myprofile" }); // render page
+    res.render("pages/ngos/myprofile", {
+      ngo: req.session,
+      action: "myprofile",
+    }); // render page
   } else {
     res.redirect("/");
   }
@@ -63,7 +68,10 @@ router.get("/myprofile", function (req, res) {
 // Action Product Detail
 router.get("/productdetail", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
-    res.render("pages/ngos/productdetail", { action: "productdetail" }); // render page
+    res.render("pages/ngos/productdetail", {
+      ngo: req.session,
+      action: "productdetail",
+    }); // render page
   } else {
     res.redirect("/");
   }
@@ -72,7 +80,10 @@ router.get("/productdetail", function (req, res) {
 // Action Add Payment Method
 router.get("/adPayment", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
-    res.render("pages/ngos/adPayment", { action: "adPayment" }); // render page
+    res.render("pages/ngos/adPayment", {
+      ngo: req.session,
+      action: "adPayment",
+    }); // render page
   } else {
     res.redirect("/");
   }
@@ -80,7 +91,10 @@ router.get("/adPayment", function (req, res) {
 
 router.post("/adPayment", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
-    res.render("pages/ngos/adPayment", { action: "adPayment" }); // render page
+    res.render("pages/ngos/adPayment", {
+      ngo: req.session,
+      action: "adPayment",
+    }); // render page
   } else {
     res.redirect("/");
   }
@@ -89,7 +103,10 @@ router.post("/adPayment", function (req, res) {
 // Action My Payment
 router.get("/mypayment", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
-    res.render("pages/ngos/mypayment", { action: "myPayment" }); // render page
+    res.render("pages/ngos/mypayment", {
+      ngo: req.session,
+      action: "myPayment",
+    }); // render page
   } else {
     res.redirect("/");
   }
@@ -98,7 +115,7 @@ router.get("/mypayment", function (req, res) {
 // Action Add Rider
 router.get("/addrider", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
-    res.render("pages/ngos/addrider", { action: "addrider" }); // render page
+    res.render("pages/ngos/addrider", { ngo: req.session, action: "addrider" }); // render page
   } else {
     res.redirect("/");
   }
@@ -106,7 +123,7 @@ router.get("/addrider", function (req, res) {
 
 router.post("/addrider", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
-    res.render("pages/ngos/addrider", { action: "addrider" }); // render page
+    res.render("pages/ngos/addrider", { ngo: req.session, action: "addrider" }); // render page
   } else {
     res.redirect("/");
   }
@@ -115,7 +132,19 @@ router.post("/addrider", function (req, res) {
 // Action My Rider
 router.get("/myrider", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
-    res.render("pages/ngos/myrider", { action: "myrider" }); // render page
+    res.render("pages/ngos/myrider", { ngo: req.session, action: "myrider" }); // render page
+  } else {
+    res.redirect("/");
+  }
+});
+
+// Action My Products
+router.get("/myProducts", function (req, res) {
+  if (req.session.isNGO && req.session.isNGO === true) {
+    res.render("pages/ngos/myProducts", {
+      ngo: req.session,
+      action: "myProducts",
+    }); // render page
   } else {
     res.redirect("/");
   }

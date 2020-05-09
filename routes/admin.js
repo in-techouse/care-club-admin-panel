@@ -4,7 +4,10 @@ var router = express.Router();
 
 router.get("/", function (req, res) {
   if (req.session.isAdmin && req.session.isAdmin === true) {
-    res.render("pages/admin/index", { action: "dashboard" });
+    res.render("pages/admin/index", {
+      action: "dashboard",
+      admin: req.session,
+    });
   } else {
     res.redirect("/");
   }
@@ -23,10 +26,18 @@ router.get("/allngos", function (req, res) {
       data.forEach((d) => {
         ngos.push(d.val());
       });
-      res.render("pages/admin/allngos", { ngos: ngos, action: "allngos" });
+      res.render("pages/admin/allngos", {
+        ngos: ngos,
+        action: "allngos",
+        admin: req.session,
+      });
     })
     .catch((e) => {
-      res.render("pages/admin/allngos", { ngos: ngos, action: "allngos" });
+      res.render("pages/admin/allngos", {
+        ngos: ngos,
+        action: "allngos",
+        admin: req.session,
+      });
     });
   // } else {
   //   res.redirect("/");
@@ -47,10 +58,18 @@ router.get("/alluser", function (req, res) {
       data.forEach((u) => {
         users.push(u.val());
       });
-      res.render("pages/admin/alluser", { users: users, action: "alluser" });
+      res.render("pages/admin/alluser", {
+        users: users,
+        action: "alluser",
+        admin: req.session,
+      });
     })
     .catch((e) => {
-      res.render("pages/admin/alluser", { users: users, action: "alluser" });
+      res.render("pages/admin/alluser", {
+        users: users,
+        action: "alluser",
+        admin: req.session,
+      });
     });
   // } else {
   //   res.redirect("/");
@@ -70,6 +89,7 @@ router.get("/ngoDetail", function (req, res) {
       res.render("pages/admin/ngoDetail", {
         ngo: data.val(),
         action: "ngoDetail",
+        admin: req.session,
       });
     })
     .catch((e) => {
@@ -92,6 +112,7 @@ router.get("/userDetail", function (req, res) {
       res.render("pages/admin/userDetail", {
         user: data.val(),
         action: "userDetail",
+        admin: req.session,
       });
     })
     .catch((e) => {
