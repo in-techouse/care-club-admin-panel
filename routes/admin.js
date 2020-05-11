@@ -126,10 +126,11 @@ router.get("/userDetail", function (req, res) {
       .catch((l)=>{
         res.render("pages/admin/userDetail", {
           user: data.val(),
-          action: "userDetail",
+          action: "userDetail", 
           admin: req.session,
           Products:Products,
         });
+        
       });
       
     })
