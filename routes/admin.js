@@ -109,11 +109,29 @@ router.get("/userDetail", function (req, res) {
     .child(req.query.id)
     .once("value")
     .then((data) => {
-      res.render("pages/admin/userDetail", {
+      let Products =[];
+      firebase.database.ref().child("Products").orderByKey("userId").equalTo(req.query.id).once("value")
+      .then((p)=>{
+      p.forEach((n)=>{
+      Products.push(n.val());  
+      });
+       res.render("pages/admin/userDetail", {
         user: data.val(),
         action: "userDetail",
         admin: req.session,
+        Products:Products,
       });
+
+      })
+      .catch((l)=>{
+        res.render("pages/admin/userDetail", {
+          user: data.val(),
+          action: "userDetail",
+          admin: req.session,
+          Products:Products,
+        });
+      });
+      
     })
     .catch((e) => {
       res.redirect("/admin/alluser");

@@ -22,42 +22,44 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
+                             <% if(user.image && user.image.length>1){%>
+                                
                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
                                 alt="" />
+                                <%}%>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
                             <h5>
-                                Kshiti Ghelani
+                                <%=user.fname%><%=user.lname%>
                             </h5>
                             <h6>
-                                Web Developer and Designer
+                                <%=user.email%>
                             </h6>
-                            <p class="proile-rating">RANKINGS : <span>8/10</span></p>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                        aria-controls="home" aria-selected="true">About</a>
+                                        aria-controls="home" aria-selected="true">Product/a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                                        aria-controls="profile" aria-selected="false">Timeline</a>
+                                        aria-controls="profile" aria-selected="false">Donation</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile" />
+                       
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-work">
-                            <p>WORK LINK</p>
-                            <a href="">Website Link</a><br />
-                            <a href="">Bootsnipp Profile</a><br />
-                            <a href="">Bootply Profile</a>
+                            <p>personal information</p>
+                            <a href=""> <%=user.fname%><%=user.lname%></a><br />
+                            <a href=""><%=user.phone%></a><br />
+                            <a href=""><%=user.email%></a>
                             <p>SKILLS</p>
                             <a href="">Web Designer</a><br />
                             <a href="">Web Developer</a><br />
