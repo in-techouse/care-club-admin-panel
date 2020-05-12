@@ -40,16 +40,16 @@
                             </h6>
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                                        aria-controls="home" aria-selected="true">Payment Methods</a>
+                                    <a class="nav-link active" id="payment-tab" data-toggle="tab" href="#payment"
+                                        role="tab" aria-controls="payment" aria-selected="true">Payment Methods</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                                        aria-controls="profile" aria-selected="false">Products</a>
+                                    <a class="nav-link" id="products-tab" data-toggle="tab" href="#products" role="tab"
+                                        aria-controls="products" aria-selected="false">Products</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                                        aria-controls="profile" aria-selected="false">Riders</a>
+                                    <a class="nav-link" id="riders-tab" data-toggle="tab" href="#riders" role="tab"
+                                        aria-controls="riders" aria-selected="false">Riders</a>
                                 </li>
                             </ul>
                         </div>
@@ -63,12 +63,43 @@
                             <a href=""><%= ngo.name %></a><br />
                             <a href=""><%= ngo.email %></a><br />
                             <a href=""><%= ngo.phone %></a><br />
-                            <a href=""><%= ngo.address %></a><br />
+                            <a href=""><%= ngo.address %></a><br /><br />
+                            <a href="">
+                                Account Status
+                                <u>
+                                    <% if(ngo.approved === 0) {%>
+                                    Pending Approval
+                                    <%}%>
+                                    <% if(ngo.approved === 1) {%>
+                                    Active
+                                    <%}%>
+                                    <% if(ngo.approved === -1) {%>
+                                    Block
+                                    <%}%>
+                                </u>
+                            </a><br /><br />
+                            <% if (ngo.approved === 0) {%>
+                                    <a href="/admin/approveNgo?id=<%= ngo.id%>" class="btn btn-block btn-success"
+                                        style="color: #F0F0F0;">Approve
+                                        Account</a>
+                                    <%}%>
+                            <% if (ngo.approved === 1) {%>
+                                    <a href="/admin/blockNgo?id=<%= ngo.id%>" class="btn btn-block btn-danger"
+                                        style="color: #F0F0F0;">Block
+                                        Account</a>
+                                    <%}%>
+
+                                <% if (ngo.approved === -1) {%>
+                                    <a href="/admin/approveNgo?id=<%= ngo.id%>" class="btn btn-block btn-success"
+                                        style="color: #F0F0F0;">Unlock
+                                        Account</a>
+                                    <%}%>
+        
                         </div>
                     </div>
                     <div class="col-md-8">
                         <div class="tab-content profile-tab" id="myTabContent">
-                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="tab-pane fade show active" id="payment" role="tabpanel" aria-labelledby="payment-tab">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>User Id</label>
@@ -110,7 +141,55 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="tab-pane fade" id="products" role="tabpanel" aria-labelledby="products-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Experience</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Expert</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Hourly Rate</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>10$/hr</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Total Projects</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>230</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>English Level</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>Expert</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Availability</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>6 months</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <label>Your Bio</label><br />
+                                        <p>Your detail description</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="riders" role="tabpanel" aria-labelledby="riders-tab">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <label>Experience</label>

@@ -36,7 +36,7 @@
                 <li class="app-sidebar__heading">
                     <a href="/admin" class="<%= action == "dashboard" ? "mm-active" : "" %>">Dashboard</a>
                 </li>
-                <li class="<%= action.includes("ngo") ? "mm-active" : "" %>">
+                <li class="<%= action.includes("ngo") || action.includes("Ngo") ? "mm-active" : "" %>">
                     <a href="#">
                         <i class="metismenu-icon pe-7s-diamond"></i>
                         NGOs
@@ -48,15 +48,18 @@
                                 Details</a>
                         </li>
                         <li>
-                            <a href="/admin/allngos" class="<%= action == "allngos" ? "mm-active" : "" %>">Approved
+                            <a href="/admin/approvedNgos"
+                                class="<%= action == "approvedNgos" ? "mm-active" : "" %>">Approved
                                 NGOs</a>
                         </li>
                         <li>
-                            <a href="/admin/allngos" class="<%= action == "allngos" ? "mm-active" : "" %>">Unapproved
+                            <a href="/admin/blockedNgos"
+                                class="<%= action == "blockedNgos" ? "mm-active" : "" %>">Blocked
                                 NGOs</a>
                         </li>
                         <li>
-                            <a href="/admin/allngos" class="<%= action == "allngos" ? "mm-active" : "" %>">Pending
+                            <a href="/admin/pendingNgos"
+                                class="<%= action == "pendingNgos" ? "mm-active" : "" %>">Pending
                                 Approval
                                 NGOs</a>
                         </li>

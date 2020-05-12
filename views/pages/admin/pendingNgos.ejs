@@ -7,7 +7,7 @@
                 </i>
             </div>
             <div class="row">
-                Listing all NGOs
+                Listing all Pending Approval NGOs
             </div>
         </div>
     </div>
@@ -15,7 +15,7 @@
 
 <div class="main-card mb-3 card">
     <div class="card-body">
-        <h5 class="card-title">ALL NGOs</h5>
+        <h5 class="card-title">ALL PENDING APPROVAL NGOs</h5>
         <table class="mb-0 table table-bordered">
             <thead>
                 <tr>
@@ -23,7 +23,6 @@
                     <th>Category</th>
                     <th>Email</th>
                     <th>Contact</th>
-                    <th>Status</th>
                     <th>DETAILS</th>
                 </tr>
             </thead>
@@ -41,17 +40,6 @@
                     </td>
                     <td>
                         <%= n.phone %>
-                    </td>
-                    <td>
-                        <% if (n.approved === 0){ %>
-                        Pending Approval
-                        <%}%>
-                        <% if (n.approved === 1){ %>
-                        Active
-                        <%}%>
-                        <% if (n.approved === -1){ %>
-                        Blocked
-                        <%}%>
                     </td>
                     <td>
                         <a href="/admin/ngoDetail?id=<%= n.id%>" class="btn btn-sm btn-primary">Details</a>

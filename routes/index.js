@@ -65,12 +65,19 @@ router.post("/signin", function (req, res) {
                 }
               });
           } else {
-            // if (data.val().approved === false) {
+            // if (data.val().approved === 0) {
             //   res.render("pages/login", {
             //     error:
             //       "Your account is not approved yet. You can use your account after admin approval.",
             //   });
-            // } else {
+            // }
+            // els eif (data.val().approved === -1 ) {
+            //   res.render("pages/login", {
+            //     error:
+            //       "Your account has been restricted by the admin. You can't use your account anymore.",
+            //   });
+            // }
+            //  else {
             req.session.category = data.val().category;
             req.session.name = data.val().name;
             req.session.email = data.val().email;
