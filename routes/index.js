@@ -71,7 +71,7 @@ router.post("/signin", function (req, res) {
             //       "Your account is not approved yet. You can use your account after admin approval.",
             //   });
             // }
-            // els eif (data.val().approved === -1 ) {
+            // else if (data.val().approved === -1 ) {
             //   res.render("pages/login", {
             //     error:
             //       "Your account has been restricted by the admin. You can't use your account anymore.",
