@@ -19,8 +19,8 @@ router.get("/allproducts", function (req, res) {
     .database()
     .ref()
     .child("Products")
-    .orderByChild("taken") // ngoid
-    .equalTo(false) // req.session.id
+    .orderByChild("taken")
+    .equalTo(false)
     .once("value")
     .then((data) => {
       data.forEach((d) => {
