@@ -75,16 +75,63 @@ router.get("/productdetail", function (req, res) {
     .child(req.query.id)
     .once("value")
     .then((d) => {
-      res.render("pages/ngos/productdetail", {
-        ngo: req.session,
-        action: "productdetail",
-        product: d.val(),
-      }); // render page
+      firebase
+        .database()
+        .ref()
+        .child("Users")
+        .child(d.val().userId)
+        .once("value")
+        .then((u) => {
+          res.render("pages/ngos/productdetail", {
+            ngo: req.session,
+            action: "productdetail",
+            product: d.val(),
+            user: u.val(),
+          });
+        })
+        .catch((e) => {
+          res.redirect("/ngo/allproducts");
+        });
     })
     .catch((e) => {
       res.redirect("/ngo/allproducts");
     });
 
+  // } else {
+  //   res.redirect("/");
+  // }
+});
+
+// Action Product Detail
+router.get("/claimProduct", function (req, res) {
+  // if (req.session.isNGO && req.session.isNGO === true) {
+  firebase
+    .database()
+    .ref()
+    .child("Products")
+    .child(req.query.id)
+    .once("value")
+    .then((d) => {
+      let product = d.val();
+      product.taken = true;
+      product = { ...product, nogid: req.session.ngoId };
+      console.log("Product Id: ", product.id);
+      firebase.database().ref().child(product.id).set(product);
+      res.json(product);
+      // firebase
+      //   .database()
+      //   .ref()
+      //   .child("Products")
+      //   .child(product.id)
+      //   .set(product)
+      //   .then((d) => {
+      //     res.redirect("/ngo/myProducts");
+      //   });
+    })
+    .catch((e) => {
+      res.json(e);
+      // res.redirect("/ngo/allproducts");
+    });
   // } else {
   //   res.redirect("/");
   // }

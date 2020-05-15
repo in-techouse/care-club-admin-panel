@@ -57,7 +57,7 @@ router.post("/signin", function (req, res) {
                     error: "You are not authorized to login here",
                   });
                 } else {
-                  req.session.id = admin.val().id;
+                  req.session.adminId = admin.val().id;
                   req.session.email = admin.val().email;
                   req.session.name = admin.val().name;
                   req.session.isAdmin = true;
@@ -83,7 +83,7 @@ router.post("/signin", function (req, res) {
             req.session.email = data.val().email;
             req.session.phone = data.val().phone;
             req.session.address = data.val().address;
-            req.session.id = data.val().id;
+            req.session.ngoId = data.val().id;
             req.session.isNGO = true;
             res.redirect("/ngo");
             // }

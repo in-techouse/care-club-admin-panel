@@ -15,11 +15,9 @@
 </div>
 
 <div class="main-card mb-3 card">
-    <div id="wrapper">
-        <div id="container">
-
-            <div id="img-wrap">
-
+    <div class="container-fluid productWrapper">
+        <div class="row">
+            <div class="col-md-4 col-sm-12 col-xs-12">
                 <ul class="images">
                     <li class="big-img">
                         <img src="<%= product.images[0] %>" />
@@ -31,8 +29,7 @@
                     <%})%>
                 </ul>
             </div>
-
-            <div class="info">
+            <div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="row">
                     <div class="col-md-12">
                         <h1><%= product.name %></h1>
@@ -42,37 +39,53 @@
                         <h2><%= product.category%></h2>
                     </div>
                 </div>
-
-
                 <p><%= product.description %></p>
-
                 <div class="row">
                     <div class="col-md-12">
                         <p id="pricing">Address</p>
                         <h5 id="price"><%= product.address %></h5>
                     </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-12 col-sm-12">
+                        <p id="pricing">Contact Number</p>
+                        <h5 id="price"><%= product.phoneno %></h5>
+                    </div>
+                    <div class="col-md-12">
                         <p id="pricing">Quantity</p>
                         <h5 id="price"><%= product.quantityOfProducts %></h5>
                     </div>
-                    <div class="col-md-6 col-sm-12">
-                        <p id="coloring">Contact Number</p>
-                        <h5 id="price"><%= product.phoneno %></h5>
-                    </div>
-
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <a style="margin-top: 10px; font-size: 16px;" href="/ngo/claim?id=<%= product.id%>"
-                            class="btn btn-primary btn-block">CLAIM PRODUCT</a>
-                    </div>
                 </div>
             </div>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Posted by,</h2>
+                    </div>
 
+                    <div class="col-md-12">
+                        <h1><%= user.fname%> <%= user.lname %></h1>
+                    </div>
+                    <div class="col-md-12">
+                        <p id="pricing">Email</p>
+                        <h5 id="price"><%= user.email %></h5>
+                    </div>
+                    <div class="col-md-12">
+                        <p id="pricing">Contact</p>
+                        <h5 id="price"><%= user.phone %></h5>
+                    </div>
+                </div>
+
+            </div>
         </div>
+        <% if (product.taken === false ) { %>
+
+        <div class="row" style="padding-top: 30px; padding-bottom: 30px;">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <a style="margin-top: 10px; font-size: 16px;" href="/ngo/claimProduct?id=<%= product.id%>"
+                    class="btn btn-primary btn-block">CLAIM PRODUCT</a>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+        <%} %>
     </div>
 </div>
