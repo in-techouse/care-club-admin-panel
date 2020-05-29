@@ -146,10 +146,31 @@ router.get("/adPayment", function (req, res) {
 
 router.post("/adPayment", function (req, res) {
   // if (req.session.isNGO && req.session.isNGO === true) {
-  res.render("pages/ngos/adPayment", {
-    ngo: req.session,
-    action: "adPayment",
-  }); // render page
+    
+    let payment = {
+     id:"",
+     Name:"",
+     ProviderName:"",
+     Number:"",
+    };
+    let pId=firebase.database.ref().child("PaymentMethods").push().key;
+    payment.id=pId;
+    payment.Name=req.body.Name;
+    payment.ProviderName=req.body.ProviderName;
+    payment.Number=req.body.Mobile;
+    ngoId:req.session.ngoId,
+    firebase
+    .database
+    .ref()
+    .child("PaymentMethods")
+    .child(payment.id)
+    .set(payment)
+    .then((d)=>{res.redirect("/ngo/mypayment")})
+    .catch((e)=>{ res.render("pages/ngos/adPayment", {
+       ngo: req.session,
+       action: "adPayment",});
+
+    // }); // render page
   // } else {
   //   res.redirect("/");
   // }
@@ -226,4 +247,4 @@ router.get("/myProducts", function (req, res) {
   }
 });
 
-module.exports = router;
+module.exports = router;)
