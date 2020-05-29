@@ -262,20 +262,11 @@ router.get("/userDetail", function (req, res) {
             admin: req.session,
             products: products,
           });
-        })
-        .catch((l) => {
-          res.render("pages/admin/userDetail", {
-            user: data.val(),
-            action: "userDetail",
-            admin: req.session,
-            Products: Products,
-          });
         });
     })
     .catch((e) => {
       res.redirect("/admin/alluser");
     });
-  res.render("pages/admin/userDetail");
   // } else {
   //   res.redirect("/");
   // }

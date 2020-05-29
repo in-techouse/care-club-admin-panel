@@ -134,47 +134,49 @@ router.get("/claimProduct", function (req, res) {
 
 // Action Add Payment Method
 router.get("/adPayment", function (req, res) {
-  // if (req.session.isNGO && req.session.isNGO === true) {
-  res.render("pages/ngos/adPayment", {
-    ngo: req.session,
-    action: "adPayment",
-  }); // render page
-  // } else {
-  //   res.redirect("/");
-  // }
+  if (req.session.isNGO && req.session.isNGO === true) {
+    res.render("pages/ngos/adPayment", {
+      ngo: req.session,
+      action: "adPayment",
+    }); // render page
+  } else {
+    res.redirect("/");
+  }
 });
 
 router.post("/adPayment", function (req, res) {
-  // if (req.session.isNGO && req.session.isNGO === true) {
-    
+  if (req.session.isNGO && req.session.isNGO === true) {
     let payment = {
-     id:"",
-     Name:"",
-     ProviderName:"",
-     Number:"",
-     ngoId:req.session.ngoId,
+      id: "",
+      name: "",
+      providerName: "",
+      phone: "",
+      ngoId: req.session.ngoId,
     };
-    let pId=firebase.database.ref().child("PaymentMethods").push().key;
-    payment.id=pId;
-    payment.Name=req.body.Name;
-    payment.ProviderName=req.body.ProviderName;
-    payment.Number=req.body.Mobile;
-  
+    let pId = firebase.database().ref().child("PaymentMethods").push().key;
+    payment.id = pId;
+    payment.name = req.body.Name;
+    payment.providerName = req.body.ProviderName;
+    payment.phone = req.body.Mobile;
+
     firebase
-    .database
-    .ref()
-    .child("PaymentMethods")
-    .child(payment.id)
-    .set(payment)
-    .then((d)=>{res.redirect("/ngo/mypayment")})
-    .catch((e)=>{ res.render("pages/ngos/adPayment", {
-       ngo: req.session,
-       action: "adPayment",});
-    });
-    // }); // render page
-  // } else {
-  //   res.redirect("/");
-  // }
+      .database()
+      .ref()
+      .child("PaymentMethods")
+      .child(payment.id)
+      .set(payment)
+      .then((d) => {
+        res.redirect("/ngo/mypayment");
+      })
+      .catch((e) => {
+        res.render("pages/ngos/adPayment", {
+          ngo: req.session,
+          action: "adPayment",
+        });
+      });
+  } else {
+    res.redirect("/");
+  }
 });
 
 // Action My Payment
@@ -191,19 +193,57 @@ router.get("/mypayment", function (req, res) {
 
 // Action Add Rider
 router.get("/addrider", function (req, res) {
-  // if (req.session.isNGO && req.session.isNGO === true) {
-  res.render("pages/ngos/addrider", { ngo: req.session, action: "addrider" }); // render page
-  // } else {
-  //   res.redirect("/");
-  // }
+  if (req.session.isNGO && req.session.isNGO === true) {
+    res.render("pages/ngos/addrider", { ngo: req.session, action: "addrider" }); // render page
+  } else {
+    res.redirect("/");
+  }
 });
 
 router.post("/addrider", function (req, res) {
-  // if (req.session.isNGO && req.session.isNGO === true) {
-  res.render("pages/ngos/addrider", { ngo: req.session, action: "addrider" }); // render page
-  // } else {
-  //   res.redirect("/");
-  // }
+  if (req.session.isNGO && req.session.isNGO === true) {
+    let rider = {
+      id: "",
+      fname: "",
+      lname: "",
+      email: "",
+      phone: "",
+      address: "",
+      ngoId: req.session.ngoId,
+      role: 1,
+    };
+    var rId = req.body.email.replace("@", "-");
+    rId = rId.replace(/\./g, "_");
+    rider.id = rId;
+    rider.fname = req.body.firstName;
+    rider.lname = req.body.lastName;
+    rider.email = req.body.email;
+    let password = req.body.password;
+    rider.phone = req.body.mobileNo;
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(rider.email, password)
+      .then((r) => {
+        firebase
+          .database()
+          .ref()
+          .child("Users")
+          .child(rider.id)
+          .set(rider)
+          .then((d) => {
+            res.redirect("/ngo/myrider");
+          });
+      })
+      .catch((e) => {
+        res.json(e.message);
+        // res.render("pages/ngos/addrider", {
+        //   ngo: req.session,
+        //   action: "addrider",
+        // });
+      });
+  } else {
+    res.redirect("/");
+  }
 });
 
 // Action My Rider
