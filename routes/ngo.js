@@ -152,13 +152,14 @@ router.post("/adPayment", function (req, res) {
      Name:"",
      ProviderName:"",
      Number:"",
+     ngoId:req.session.ngoId,
     };
     let pId=firebase.database.ref().child("PaymentMethods").push().key;
     payment.id=pId;
     payment.Name=req.body.Name;
     payment.ProviderName=req.body.ProviderName;
     payment.Number=req.body.Mobile;
-    ngoId:req.session.ngoId,
+  
     firebase
     .database
     .ref()
@@ -169,7 +170,7 @@ router.post("/adPayment", function (req, res) {
     .catch((e)=>{ res.render("pages/ngos/adPayment", {
        ngo: req.session,
        action: "adPayment",});
-
+    });
     // }); // render page
   // } else {
   //   res.redirect("/");
@@ -247,4 +248,4 @@ router.get("/myProducts", function (req, res) {
   }
 });
 
-module.exports = router;)
+module.exports = router;
