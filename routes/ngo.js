@@ -339,4 +339,26 @@ router.get("/myProducts", function (req, res) {
   }
 });
 
+router.get("/paymentDetail", function (req, res) {
+  if (req.session.isNGO && req.session.isNGO === true) {
+    res.render("pages/ngos/paymentDetail", {
+      ngo: req.session,
+      action: "paymentDetail",
+    });
+  } else {
+    res.redirect("/");
+  }
+});
+
+router.get("/riderDetail", function (req, res) {
+  if (req.session.isNGO && req.session.isNGO === true) {
+    res.render("pages/ngos/riderDetail", {
+      ngo: req.session,
+      action: "riderDetail",
+    });
+  } else {
+    res.redirect("/");
+  }
+});
+
 module.exports = router;
