@@ -15,5 +15,34 @@
 <div class="main-card mb-3 card">
     <div class="card-body">
         <h5 class="card-title"> <%= rider.fname %>'s DETAIL</h5>
+        <div class="container emp-profile">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+                            <% if(rider.image && rider.image.length>1){%>
+
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+                                alt="" />
+                            <%}%>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                            <h5>
+                                <%=rider.fname%> <%=rider.lname%>
+                            </h5>
+                            <h6>
+                                <%=rider.email%>
+                            </h6>
+
+                            <h6>
+                                <%=rider.phone%>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
