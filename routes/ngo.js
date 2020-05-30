@@ -341,10 +341,22 @@ router.get("/myProducts", function (req, res) {
 
 router.get("/paymentDetail", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
-    res.render("pages/ngos/paymentDetail", {
-      ngo: req.session,
-      action: "paymentDetail",
-    });
+    firebase
+      .database()
+      .ref()
+      .child("PaymentMethods")
+      .child(req.query.id)
+      .once("value")
+      .then((data) => {
+        res.render("pages/ngos/paymentDetail", {
+          ngo: req.session,
+          payment: data.val(),
+          action: "paymentDetail",
+        });
+      })
+      .catch((e) => {
+        res.redirect("/ngo/mypayment");
+      });
   } else {
     res.redirect("/");
   }
@@ -352,10 +364,22 @@ router.get("/paymentDetail", function (req, res) {
 
 router.get("/riderDetail", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
-    res.render("pages/ngos/riderDetail", {
-      ngo: req.session,
-      action: "riderDetail",
-    });
+    firebase
+      .database()
+      .ref()
+      .child("Users")
+      .child(req.query.id)
+      .once("value")
+      .then((data) => {
+        res.render("pages/ngos/riderDetail", {
+          ngo: req.session,
+          rider: data.val(),
+          action: "riderDetail",
+        });
+      })
+      .catch((e) => {
+        res.redirect("/ngo/myrider");
+      });
   } else {
     res.redirect("/");
   }
