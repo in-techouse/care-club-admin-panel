@@ -3,19 +3,48 @@
     <div class="page-title-wrapper">
         <div class="page-title-heading">
             <div class="page-title-icon">
-                <i class="pe-7s-car icon-gradient bg-mean-fruit">
-                </i>
+                <i class="metismenu-icon fa fa-money-bill fa-w-6 icon-gradient bg-mean-fruit"></i>
             </div>
-            <div>
-                NGO My Payment Method
-                <div class="page-title-subheading">
-                    This is an example dashboard created using build-in elements and components.
-                </div>
+            <div class="row">
+                Listing All Payment Methods
             </div>
         </div>
     </div>
 </div>
-
-<div class="row">
-    <h1>NGO My Payment Method Page</h1>
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">ALL Payment Methods</h5>
+        <table class="mb-0 table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Provider Name</th>
+                    <th>Account Holder Name</th>
+                    <th>Account Number</th>
+                    <th>DETAILS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% payments.forEach((u)=>{%>
+                <tr>
+                    <td>
+                        <%= u.name %>
+                    </td>
+                    <td>
+                        <%= u.providerName %>
+                    </td>
+                    <td>
+                        <%= u.accountHolderName %>
+                    </td>
+                    <td>
+                        <%= u.accountNumber %>
+                    </td>
+                    <td>
+                        <a href="/admin/mypayment?id=<%= u.id%>" class="btn btn-sm btn-primary">Details</a>
+                    </td>
+                </tr>
+                <%});%>
+            </tbody>
+        </table>
+    </div>
 </div>

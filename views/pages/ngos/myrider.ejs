@@ -3,19 +3,44 @@
     <div class="page-title-wrapper">
         <div class="page-title-heading">
             <div class="page-title-icon">
-                <i class="pe-7s-car icon-gradient bg-mean-fruit">
-                </i>
+                <i class="metismenu-icon fa fa-truck fa-w-6 icon-gradient bg-mean-fruit"></i>
             </div>
-            <div>
-                NGO My Rider
-                <div class="page-title-subheading">
-                    This is an example dashboard created using build-in elements and components.
-                </div>
+            <div class="row">
+                Listing all Riders
             </div>
         </div>
     </div>
 </div>
-
-<div class="row">
-    <h1>NGO My Rider Page</h1>
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">ALL Riders</h5>
+        <table class="mb-0 table table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact</th>
+                    <th>DETAILS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% riders.forEach((u)=>{%>
+                <tr>
+                    <td>
+                        <%= u.fname %> <%= u.lname %>
+                    </td>
+                    <td>
+                        <%= u.email %>
+                    </td>
+                    <td>
+                        <%= u.phone %>
+                    </td>
+                    <td>
+                        <a href="/admin/myrider?id=<%= u.id%>" class="btn btn-sm btn-primary">Details</a>
+                    </td>
+                </tr>
+                <%});%>
+            </tbody>
+        </table>
+    </div>
 </div>

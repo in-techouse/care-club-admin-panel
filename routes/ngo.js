@@ -183,14 +183,35 @@ router.post("/adPayment", function (req, res) {
 
 // Action My Payment
 router.get("/mypayment", function (req, res) {
-  // if (req.session.isNGO && req.session.isNGO === true) {
-  res.render("pages/ngos/mypayment", {
-    ngo: req.session,
-    action: "myPayment",
-  }); // render page
-  // } else {
-  //   res.redirect("/");
-  // }
+  if (req.session.isNGO && req.session.isNGO === true) {
+    let payments = [];
+    firebase
+      .database()
+      .ref()
+      .child("PaymentMethods")
+      .orderByChild("ngoId") // ngoid
+      .equalTo(req.session.ngoId) // req.session.ngoId
+      .once("value")
+      .then((data) => {
+        data.forEach((d) => {
+          payments.push(d.val());
+        });
+        res.render("pages/ngos/mypayment", {
+          ngo: req.session,
+          payments: payments,
+          action: "mypayment",
+        });
+      })
+      .catch((e) => {
+        res.render("pages/ngos/mypayment", {
+          ngo: req.session,
+          payments: payments,
+          action: "mypayment",
+        });
+      });
+  } else {
+    res.redirect("/");
+  }
 });
 
 // Action Add Rider
@@ -254,11 +275,35 @@ router.post("/addrider", function (req, res) {
 
 // Action My Rider
 router.get("/myrider", function (req, res) {
-  // if (req.session.isNGO && req.session.isNGO === true) {
-  res.render("pages/ngos/myrider", { ngo: req.session, action: "myrider" }); // render page
-  // } else {
-  //   res.redirect("/");
-  // }
+  if (req.session.isNGO && req.session.isNGO === true) {
+    let riders = [];
+    firebase
+      .database()
+      .ref()
+      .child("Users")
+      .orderByChild("ngoId") // ngoid
+      .equalTo(req.session.ngoId) // req.session.ngoId
+      .once("value")
+      .then((data) => {
+        data.forEach((d) => {
+          riders.push(d.val());
+        });
+        res.render("pages/ngos/myrider", {
+          ngo: req.session,
+          riders: riders,
+          action: "myrider",
+        });
+      })
+      .catch((e) => {
+        res.render("pages/ngos/myrider", {
+          ngo: req.session,
+          riders: rider,
+          action: "myrider",
+        });
+      });
+  } else {
+    res.redirect("/");
+  }
 });
 
 // Action My Products
