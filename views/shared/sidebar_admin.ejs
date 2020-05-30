@@ -35,14 +35,12 @@
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading">
                     <a href="/admin" class="<%= action == "dashboard" ? "mm-active" : "" %>">
-                        <!-- <i class="metismenu-icon pe-7s-diamond"></i> -->
                         <i class="metismenu-icon fa fa-list fa-w-6"></i>
                         Dashboard
                     </a>
                 </li>
                 <li class="<%= action.includes("ngo") || action.includes("Ngo") ? "mm-active" : "" %>">
                     <a href="#">
-                        <!-- <i class="metismenu-icon pe-7s-diamond"></i> -->
                         <i class="metismenu-icon fa fa-handshake fa-w-6"></i>
                         NGOs
                         <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>

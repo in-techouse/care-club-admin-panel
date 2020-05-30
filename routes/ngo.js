@@ -150,14 +150,16 @@ router.post("/adPayment", function (req, res) {
       id: "",
       name: "",
       providerName: "",
-      phone: "",
+      accountNumber: "",
+      accountHolderName: "",
       ngoId: req.session.ngoId,
     };
     let pId = firebase.database().ref().child("PaymentMethods").push().key;
     payment.id = pId;
     payment.name = req.body.Name;
     payment.providerName = req.body.ProviderName;
-    payment.phone = req.body.Mobile;
+    payment.accountNumber = req.body.accountNumber;
+    payment.accountHolderName = req.body.accountHolderName;
 
     firebase
       .database()
@@ -194,7 +196,11 @@ router.get("/mypayment", function (req, res) {
 // Action Add Rider
 router.get("/addrider", function (req, res) {
   if (req.session.isNGO && req.session.isNGO === true) {
-    res.render("pages/ngos/addrider", { ngo: req.session, action: "addrider" }); // render page
+    res.render("pages/ngos/addrider", {
+      ngo: req.session,
+      action: "addrider",
+      error: "",
+    }); // render page
   } else {
     res.redirect("/");
   }
@@ -235,11 +241,11 @@ router.post("/addrider", function (req, res) {
           });
       })
       .catch((e) => {
-        res.json(e.message);
-        // res.render("pages/ngos/addrider", {
-        //   ngo: req.session,
-        //   action: "addrider",
-        // });
+        res.render("pages/ngos/addrider", {
+          ngo: req.session,
+          action: "addrider",
+          error: e.message,
+        });
       });
   } else {
     res.redirect("/");

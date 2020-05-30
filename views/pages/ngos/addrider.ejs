@@ -3,8 +3,7 @@
     <div class="page-title-wrapper">
         <div class="page-title-heading">
             <div class="page-title-icon">
-                <i class="pe-7s-car icon-gradient bg-mean-fruit">
-                </i>
+                <i class="metismenu-icon fa fa-truck fa-w-6 icon-gradient bg-mean-fruit"></i>
             </div>
             <div class="row">
                 NGO Add Rider
@@ -46,9 +45,17 @@
                     </div>
                     <!-- 5th Field -->
                     <div class="form-group">
-                        <label>Mobile No</label>
+                        <label>Mobile Number</label>
                         <input name="mobileNo" type="tel" class="form-control" placeholder="MobileNo" required />
                     </div>
+
+                    <% if (error != "" ){ %>
+                    <div class="form-group form-success-gone">
+                        <div class="alert alert-danger" role="alert">
+                            <%= error %>
+                        </div>
+                    </div>
+                    <% } %>
 
                 </div>
 
