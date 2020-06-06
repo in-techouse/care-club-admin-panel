@@ -5,13 +5,41 @@
             <div class="page-title-icon">
                 <i class="metismenu-icon fa fa-money-bill fa-w-6 icon-gradient bg-mean-fruit"></i>
             </div>
-            <div>
-                NGO My Donations
+            <div class="row">
+                Listing All Donations
             </div>
         </div>
     </div>
 </div>
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">ALL DONATIONS </h5>
+        <table class="mb-0 table table-bordered">
+            <thead>
+                <tr>
+                    <th>UserID</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                
+                </tr>
+            </thead>
+            <tbody>
+                <% donations.forEach((u)=>{%>
+                <tr>
+                    <td>
+                        <%= u.userId %>
+                    </td>
+                    <td>
+                        <%= u.amount %> RS
+                    </td>
+                    <td>
+                        <%= u.date %>
+                    </td>
 
-<div class="row">
-    <h1>NGO My Donations Page</h1>
+            
+                </tr>
+                <%});%>
+            </tbody>
+        </table>
+    </div>
 </div>

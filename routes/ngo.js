@@ -47,14 +47,41 @@ router.get("/allproducts", function (req, res) {
 // Action My Funds
 router.get("/myDonations", function (req, res) {
   // if (req.session.isNGO && req.session.isNGO === true) {
-  res.render("pages/ngos/myDonations", {
-    ngo: req.session,
-    action: "myDonations",
-  }); // render page
+    if (req.session.isNGO && req.session.isNGO === true) {
+      let donations = [];
+      firebase
+        .database()
+        .ref()
+        .child("Donations")
+        .orderByChild("ngoId") // ngoid
+        .equalTo(req.session.ngoId) // req.session.ngoId
+        .once("value")
+        .then((data) => {
+          data.forEach((d) => {
+            donations.push(d.val());
+          });
+          res.render("pages/ngos/myDonations", {
+            ngo: req.session,
+            donations: donations,
+            action: "myDonations",
+          });
+        })
+        .catch((e) => {
+          res.render("pages/ngos/myDonations", {
+            ngo: req.session,
+            donations: donations,
+            action: "myDonations",
+          });
+        });
+    } else {
+      res.redirect("/");
+    }
+  });
+  // render page
   // } else {
   //   res.redirect("/");
   // }
-});
+
 
 // Action My Profile
 router.get("/myprofile", function (req, res) {
