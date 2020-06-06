@@ -1,4 +1,5 @@
 <% extend ('../../layout')%>
+<link rel="stylesheet" type="text/css" href="/public/bootstrap/custom.css" />
 <div class="app-page-title">
     <div class="page-title-wrapper">
         <div class="page-title-heading">
@@ -12,6 +13,136 @@
     </div>
 </div>
 
-<div class="row">
-    <h1>NGO My Profile Page</h1>
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title"><%= ngo.name %>'s Detail</h5>
+        <div class="container emp-profile">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-img">
+                        <% if (ngo.image && ngo.image.length > 1 ){ %>
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
+                            alt="" />
+                        <% } else {%>
+                        <img src="/public/images/choose.png" alt="" />
+
+                        <%}%>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="profile-head">
+                            <h5>
+                                <%= ngo.name %>
+                        </h5>
+                        <h6>
+                            <%= ngo.email %>
+                        </h6>
+                        <h6>
+                            <%= ngo.address %>
+                        </h6>
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="editProfile-tab" data-toggle="tab" href="#editProfile"
+                                    role="tab" aria-controls="editProfile" aria-selected="true">Edit Profile</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="profile-work">
+                        <p>Personal Information</p>
+                        <a href=""><%= ngo.name %></a><br />
+                        <a href=""><%= ngo.email %></a><br />
+                        <a href=""><%= ngo.phone %></a><br />
+                        <a href=""><%= ngo.address %></a><br /><br />
+                        <a href="">
+                            Account Status
+                            <u>
+                                <% if(ngo.approved === 0) {%>
+                                Pending Approval
+                                <%}%>
+                                    <% if(ngo.approved === 1) {%>
+                                Active
+                                <%}%>
+                                    <% if(ngo.approved === -1) {%>
+                                Block
+                                <%}%>
+                                </u>
+                            </a>
+                            <br /><br />
+                            <% if (ngo.approved === 0) {%>
+                                <a href="/admin/approveNgo?id=<%= ngo.id%>" class="btn btn-block btn-success"
+                                    style="color: #F0F0F0;">Approve
+                                    Account</a>
+                                <%}%>
+                            <% if (ngo.approved === 1) {%>
+                                <a href="/admin/blockNgo?id=<%= ngo.id%>" class="btn btn-block btn-danger"
+                                    style="color: #F0F0F0;">Block
+                                    Account</a>
+                                <%}%>
+
+                                <% if (ngo.approved === -1) {%>
+                                <a href="/admin/approveNgo?id=<%= ngo.id%>" class="btn btn-block btn-success"
+                                    style="color: #F0F0F0;">Unlock
+                                    Account</a>
+                                <%}%>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="tab-content profile-tab" id="myTabContent">
+                        <div class="tab-pane fade show active" id="editProfile" role="tabpanel" aria-labelledby="editProfile-tab">
+                            <form>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Email</label>
+                                    <input name="email" type="email" class="form-control" placeholder="Email" value="<%= ngo.email%>"
+                                readonly/>
+                    </div>
+                    <div class="col-md-12">
+                        <label>Name</label>
+                        <input name="name" type="text" class="form-control" placeholder="Name" value="<%= ngo.name%>" />
+                    </div>
+                    <div class="col-md-12">
+                        <label>Phone Number</label>
+                        <input name="phone" type="text" class="form-control" placeholder="Phone"
+                            value="<%= ngo.phone%>" />
+                    </div>
+                    <div class="col-md-12">
+                        <label>Address</label>
+                        <input name="address" type="text" class="form-control" placeholder="Address"
+                            value="<%= ngo.address%>" />
+                    </div>
+                    <div class="col-md-12">
+                        <label>Website</label>
+                        <input name="website" type="text" class="form-control" placeholder="Website"
+                            value="<%= ngo.website%>" />
+                    </div>
+                    <div class="col-md-12">
+                        <label>Working Since</label>
+                        <input name="workingSince" type="date" class="form-control" placeholder="Working Since"
+                            value="<%= ngo.workingSince%>" />
+                    </div>
+                    <div class="col-md-12">
+                        <label>Level of Action</label>
+                        <select name="levelOfAction" class="form-control">
+                            <option value="Regional">Regional</option>
+                            <option value="National">National</option>
+                            <option value="Internation">Internation</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12">
+                        <label>NGO Vision</label>
+                        <textarea name="vision" class="form-control"><%= ngo.vision %></textarea>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
 </div>
