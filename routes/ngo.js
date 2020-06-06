@@ -45,9 +45,12 @@ router.get("/allproducts", function (req, res) {
 });
 
 // Action My Funds
-router.get("/myfunds", function (req, res) {
+router.get("/myDonations", function (req, res) {
   // if (req.session.isNGO && req.session.isNGO === true) {
-  res.render("pages/ngos/myfunds", { ngo: req.session, action: "myfunds" }); // render page
+  res.render("pages/ngos/myDonations", {
+    ngo: req.session,
+    action: "myDonations",
+  }); // render page
   // } else {
   //   res.redirect("/");
   // }
