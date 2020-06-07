@@ -17,10 +17,18 @@ firebase.initializeApp(firebaseConfig);
 
 /* GET home page. */
 router.get("/", function (req, res) {
-  res.render("pages/login", { error: "" });
+  res.render("pages/index", { action: "index" });
 });
 
-router.post("/signin", function (req, res) {
+router.get("/contact", function (req, res) {
+  res.render("pages/contact", { action: "contact" });
+});
+
+router.get("/login", function (req, res) {
+  res.render("pages/login", { error: "", action: "login" });
+});
+
+router.post("/login", function (req, res) {
   firebase
     .auth()
     .signInWithEmailAndPassword(req.body.userEmail, req.body.userPassword)
@@ -55,6 +63,7 @@ router.post("/signin", function (req, res) {
                 ) {
                   res.render("pages/login", {
                     error: "You are not authorized to login here",
+                    action: "login",
                   });
                 } else {
                   req.session.adminId = admin.val().id;
@@ -92,16 +101,17 @@ router.post("/signin", function (req, res) {
         .catch((err) => {
           res.render("pages/login", {
             error: "You are not authorized to login here",
+            action: "login",
           });
         });
     })
     .catch((e) => {
-      res.render("pages/login", { error: e.message });
+      res.render("pages/login", { error: e.message, action: "login" });
     });
 });
 
 router.get("/registeration", function (req, res) {
-  res.render("pages/registration", { error: "" });
+  res.render("pages/registration", { error: "", action: "registration" });
 });
 
 router.post("/registeration", function (req, res) {
@@ -144,15 +154,25 @@ router.post("/registeration", function (req, res) {
           });
       })
       .catch((e) => {
-        res.render("pages/registration", { error: e.message });
+        res.render("pages/registration", {
+          error: e.message,
+          action: "registration",
+        });
       });
   } else {
-    res.render("pages/registration", { error: "Password doesn't match" });
+    res.render("pages/registration", {
+      error: "Password doesn't match",
+      action: "registration",
+    });
   }
 });
 
 router.get("/forgetPassword", function (req, res) {
-  res.render("pages/forgetPassword", { error: "", success: "" });
+  res.render("pages/forgetPassword", {
+    error: "",
+    success: "",
+    action: "forgotPassword",
+  });
 });
 
 router.post("/forgetPassword", function (req, res) {
@@ -165,10 +185,15 @@ router.post("/forgetPassword", function (req, res) {
         error: "",
         success:
           "A password recovery email has been sent to your email address. Check the email and follow the instructions to reset your password.",
+        action: "forgotPassword",
       });
     })
     .catch((e) => {
-      res.render("pages/forgetPassword", { error: e.message, success: "" });
+      res.render("pages/forgetPassword", {
+        error: e.message,
+        success: "",
+        action: "forgotPassword",
+      });
     });
 });
 

@@ -1,24 +1,177 @@
 <% extend ('../layout')%>
 <!DOCTYPE html>
 <html lang="en">
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 
 <head>
     <title> Care Club </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <!-- Styling files -->
-    <link rel="stylesheet" type="text/css" href="/public/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" type="text/css" href="/public/bootstrap/dist/css/main.css" />
+    <!--====== Magnific Popup CSS ======-->
 
-    <!-- Script Files -->
-    <script src="/public/js/jQuery/jquery-3.4.1.js"></script>
-    <script src="/public/scripts/main.js"></script>
+    <link rel="stylesheet" href="/public/helpgrove/assets/css/magnific-popup.css">
+    <!--====== Animate CSS ======-->
+    <link rel="stylesheet" href="/public/helpgrove/assets/css/animate.css">
+    <!--====== Slick CSS ======-->
+    <link rel="stylesheet" href="/public/helpgrove/assets/css/slick.css">
+    <!--====== Font Awesome CSS ======-->
+    <link rel="stylesheet" href="/public/helpgrove/assets/css/font-awesome.min.css">
+    <!--====== Bootstrap CSS ======-->
+    <link rel="stylesheet" href="/public/helpgrove/assets/css/bootstrap.min.css">
+    <!--====== Default CSS ======-->
+    <link rel="stylesheet" href="/public/helpgrove/assets/css/default.css">
+    <!--====== Style CSS ======-->
+    <link rel="stylesheet" href="/public/helpgrove/assets/css/style.css">
+
+    <!--====== Jquery js ======-->
+    <script src="/public/helpgrove/assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="/public/helpgrove/assets/js/vendor/modernizr-3.7.1.min.js"></script>
+
+    <!--====== Bootstrap js ======-->
+    <script src="/public/helpgrove/assets/js/popper.min.js"></script>
+    <script src="/public/helpgrove/assets/js/bootstrap.min.js"></script>
+
+    <!--====== Slick js ======-->
+    <script src="/public/helpgrove/assets/js/slick.min.js"></script>
+
+    <!--====== Magnific Popup js ======-->
+    <script src="/public/helpgrove/assets/js/jquery.magnific-popup.min.js"></script>
+
+    <!--====== Appear js ======-->
+    <script src="/public/helpgrove/assets/js/jquery.appear.min.js"></script>
+
+    <!--====== Counter Up js ======-->
+    <script src="/public/helpgrove/assets/js/waypoints.min.js"></script>
+    <script src="/public/helpgrove/assets/js/jquery.counterup.js"></script>
+
+    <!--====== wow js ======-->
+    <script src="/public/helpgrove/assets/js/wow.min.js"></script>
+
+    <!--====== Main js ======-->
+    <script src="/public/helpgrove/assets/js/main.js"></script>
+
 </head>
 
 <body>
+    <!--====== PRELOADER PART START ======-->
+
+    <div id="preloader">
+        <div class="preloader">
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+    <!--====== PRELOADER PART ENDS ======-->
+
+    <!--====== HEADER PART START ======-->
+
+    <header class="header_area">
+        <div class="header_top">
+            <div class="container">
+                <div class="header_top_wrapper d-md-flex justify-content-between">
+                    <div class="header_social text-center">
+                        <ul>
+                            <li>
+                                <a href="https://www.facebook.com/" target="_blank">
+                                    <i class="fa fa-facebook-square"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.twitter.com/" target="_blank">
+                                    <i class="fa fa-twitter-square"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/" target="_blank">
+                                    <i class="fa fa-linkedin-square"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/" target="_blank">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.pinterest.com/" target="_blank">
+                                    <i class="fa fa-pinterest-square"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div> <!-- header social -->
+
+                    <div class="header_info d-none d-md-block">
+                        <ul>
+                            <li><img src="/public/helpgrove/assets/images/call.png" alt=""><a href="#">91 458 654
+                                    528</a></li>
+                            <li><img src="/public/helpgrove/assets/images/mail.png" alt=""><a
+                                    href="#">info@example.com</a></li>
+                            <li><img src="/public/helpgrove/assets/images/heand.png" alt=""><a href="#">Become a
+                                    Volunteer</a></li>
+                        </ul>
+                    </div> <!-- header info -->
+                </div> <!-- header top wrapper -->
+            </div> <!-- container -->
+        </div> <!-- header top -->
+
+        <div class="header_navbar">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg">
+                    <a class="navbar-brand" href="/">
+                        <img src="/public/helpgrove/assets/images/logo.png" alt="logo">
+                    </a> <!-- logo -->
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="toggler-icon"></span>
+                        <span class="toggler-icon"></span>
+                        <span class="toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                        <ul class="navbar-nav m-auto">
+                            <li>
+                                <a class="<%= action === "index" ? "active" : "" %>" href="/">Home</a>
+                            </li>
+                            <li>
+                                <a class="<%= action === "login" ? "active" : "" %>" href="/login">Login</a>
+                            </li>
+
+                            <li>
+                                <a class="<%= action === "contact" ? "active" : "" %>" href="/contact">Contact</a>
+                            </li>
+                        </ul>
+                    </div> <!-- navbar collapse -->
+
+                    <div class="navbar_btn d-none d-sm-block">
+                        <a class="main-btn" href="/registeration"><i class="fa fa-heart"></i> Register Your NGO</a>
+                    </div>
+
+                </nav> <!-- navbar -->
+            </div> <!-- container -->
+        </div> <!-- header navbar -->
+    </header>
+
+    <!--====== HEADER PART ENDS ======-->
+
     <%- content %>
+
+    <!--====== GO TO TOP PART START ======-->
+
+    <div class="go-top-area">
+        <div class="go-top-wrap">
+            <div class="go-top-btn-wrap">
+                <div class="go-top go-top-btn">
+                    <i class="fa fa-angle-double-up"></i>
+                    <i class="fa fa-angle-double-up"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--====== GO TO TOP PART ENDS ======-->
 </body>
 
 </html>
