@@ -9064,9 +9064,9 @@ button,
   transition: width 0.2s;
 }
 .app-header__logo .logo-src {
-  height: 23px;
-  width: 97px;
-  background: url(../../../images/logo-inverse.png);
+  height: 100%;
+  width: 100%;
+  background: url(../../../helpgrove/assets/images/logoo.png) no-repeat !important;
 }
 .app-header__menu,
 .app-header__mobile-menu {
