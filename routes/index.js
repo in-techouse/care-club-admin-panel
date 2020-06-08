@@ -87,12 +87,17 @@ router.post("/login", function (req, res) {
             //   });
             // }
             //  else {
-            req.session.category = data.val().category;
-            req.session.name = data.val().name;
-            req.session.email = data.val().email;
-            req.session.phone = data.val().phone;
             req.session.address = data.val().address;
+            req.session.category = data.val().category;
+            req.session.email = data.val().email;
             req.session.ngoId = data.val().id;
+            req.session.image = data.val().image;
+            req.session.levelOfAction = data.val().levelOfAction;
+            req.session.name = data.val().name;
+            req.session.phone = data.val().phone;
+            req.session.vision = data.val().vision;
+            req.session.website = data.val().website;
+            req.session.workingSince = data.val().workingSince;
             req.session.isNGO = true;
             res.redirect("/ngo");
             // }

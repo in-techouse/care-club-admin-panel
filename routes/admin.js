@@ -3,18 +3,20 @@ var firebase = require("firebase");
 var router = express.Router();
 
 router.get("/", function (req, res) {
-  // if (req.session.isAdmin && req.session.isAdmin === true) {
+  if (!req.session.isAdmin) {
+    res.redirect("/");
+  }
   res.render("pages/admin/index", {
     action: "dashboard",
     admin: req.session,
   });
-  // } else {
-  //   res.redirect("/");
-  // }
 });
 
 router.get("/allngos", function (req, res) {
-  // if (req.session.isAdmin && req.session.isAdmin === true) {
+  if (!req.session.isAdmin) {
+    res.redirect("/");
+  }
+
   let ngos = [];
   firebase
     .database()
@@ -39,13 +41,13 @@ router.get("/allngos", function (req, res) {
         admin: req.session,
       });
     });
-  // } else {
-  //   res.redirect("/");
-  // }
 });
 
 router.get("/approvedNgos", function (req, res) {
-  // if (req.session.isAdmin && req.session.isAdmin === true) {
+  if (!req.session.isAdmin) {
+    res.redirect("/");
+  }
+
   let ngos = [];
   firebase
     .database()
@@ -71,13 +73,13 @@ router.get("/approvedNgos", function (req, res) {
         admin: req.session,
       });
     });
-  // } else {
-  //   res.redirect("/");
-  // }
 });
 
 router.get("/blockedNgos", function (req, res) {
-  // if (req.session.isAdmin && req.session.isAdmin === true) {
+  if (!req.session.isAdmin) {
+    res.redirect("/");
+  }
+
   let ngos = [];
   firebase
     .database()
@@ -103,13 +105,13 @@ router.get("/blockedNgos", function (req, res) {
         admin: req.session,
       });
     });
-  // } else {
-  //   res.redirect("/");
-  // }
 });
 
 router.get("/pendingNgos", function (req, res) {
-  // if (req.session.isAdmin && req.session.isAdmin === true) {
+  if (!req.session.isAdmin) {
+    res.redirect("/");
+  }
+
   let ngos = [];
   firebase
     .database()
@@ -135,13 +137,13 @@ router.get("/pendingNgos", function (req, res) {
         admin: req.session,
       });
     });
-  // } else {
-  //   res.redirect("/");
-  // }
 });
 
 router.get("/alluser", function (req, res) {
-  // if (req.session.isAdmin && req.session.isAdmin === true) {
+  if (!req.session.isAdmin) {
+    res.redirect("/");
+  }
+
   let users = [];
   firebase
     .database()
@@ -167,13 +169,12 @@ router.get("/alluser", function (req, res) {
         admin: req.session,
       });
     });
-  // } else {
-  //   res.redirect("/");
-  // }
 });
 
 router.get("/ngoDetail", function (req, res) {
-  // if (req.session.isAdmin && req.session.isAdmin === true) {
+  if (!req.session.isAdmin) {
+    res.redirect("/");
+  }
   firebase
     .database()
     .ref()
@@ -190,13 +191,13 @@ router.get("/ngoDetail", function (req, res) {
     .catch((e) => {
       res.redirect("/admin/allngos");
     });
-  // } else {
-  //   res.redirect("/");
-  // }
 });
 
 router.get("/approveNgo", function (req, res) {
-  // if (req.session.isAdmin && req.session.isAdmin === true) {
+  if (!req.session.isAdmin) {
+    res.redirect("/");
+  }
+
   firebase
     .database()
     .ref()
@@ -210,13 +211,13 @@ router.get("/approveNgo", function (req, res) {
     .catch((e) => {
       res.redirect("/admin/allngos");
     });
-  // } else {
-  //   res.redirect("/");
-  // }
 });
 
 router.get("/blockNgo", function (req, res) {
-  // if (req.session.isAdmin && req.session.isAdmin === true) {
+  if (!req.session.isAdmin) {
+    res.redirect("/");
+  }
+
   firebase
     .database()
     .ref()
@@ -230,13 +231,13 @@ router.get("/blockNgo", function (req, res) {
     .catch((e) => {
       res.redirect("/admin/allngos");
     });
-  // } else {
-  //   res.redirect("/");
-  // }
 });
 
 router.get("/userDetail", function (req, res) {
-  // if (req.session.isAdmin && req.session.isAdmin === true) {
+  if (!req.session.isAdmin) {
+    res.redirect("/");
+  }
+
   firebase
     .database()
     .ref()
@@ -267,9 +268,6 @@ router.get("/userDetail", function (req, res) {
     .catch((e) => {
       res.redirect("/admin/alluser");
     });
-  // } else {
-  //   res.redirect("/");
-  // }
 });
 
 module.exports = router;
