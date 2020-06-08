@@ -108,6 +108,7 @@ router.post("/update", function (req, res) {
       ngo.workingSince = updatedNGO.workingSince;
       ngo.levelOfAction = updatedNGO.levelOfAction;
       ngo.vision = updatedNGO.vision;
+      ngo.image = updatedNGO.image;
       firebase
         .database()
         .ref()

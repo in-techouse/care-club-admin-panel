@@ -1,5 +1,7 @@
 <% extend ('../../layout')%>
 <link rel="stylesheet" type="text/css" href="/public/bootstrap/custom.css" />
+<script src="/public/js/ngo/ngoProfile.js"></script>
+
 <div class="app-page-title">
     <div class="page-title-wrapper">
         <div class="page-title-heading">
@@ -21,10 +23,9 @@
                 <div class="col-md-4">
                     <div class="profile-img">
                         <% if (ngo.image && ngo.image.length > 1 ){ %>
-                        <img src="<%= ngo.image %>" alt="" />
+                        <img src="<%= ngo.image %>" alt="" id="profileImage" />
                         <% } else {%>
-                        <img src="/public/images/choose.png" alt="" />
-
+                        <img src="/public/images/choose.png" alt="" id="profileImage" />
                         <%}%>
                         </div>
                     </div>
@@ -45,6 +46,9 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
+                    <p>Choose Profile Image</p>
+                    <input type="file" class="form-control" id="selectImage" accept="image/*" required />
+                    <br />
                     <div class="profile-work profile-head">
                         <p>Personal Information</p>
                         <label>Name</label>
@@ -72,6 +76,8 @@
                         <div class="tab-pane fade show active" id="editProfile" role="tabpanel"
                             aria-labelledby="editProfile-tab">
                             <form method="POST" action="/ngo/update">
+                                <input type="hidden" class="form-control" id="imageUrl" name="image"
+                                    value="<%= ngo.image %>" />
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label>NGO Category</label>
@@ -170,7 +176,8 @@
                                 <div class="row">
                                     <div class="col-md-3"></div>
                                     <div class="col-md-6">
-                                        <input type="submit" value="UPDATE PROFILE" class="btn btn-primary btn-block" />
+                                        <input id="submitProfile" type="submit" value="UPDATE PROFILE"
+                                            class="btn btn-primary btn-block" />
                                     </div>
                                     <div class="col-md-3"></div>
                                 </div>
