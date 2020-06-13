@@ -22,9 +22,11 @@
                     <div class="col-md-4">
                         <div class="profile-img">
                             <% if(user.image && user.image.length>1){%>
-
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-                                alt="" />
+                            <img src="<%= user.image %>" alt="" class="img-round img-thumbnail"
+                                style="border-radius: 50%; width: 200px;" />
+                            <%} else {%>
+                            <img src="/public/images/user.jpg" alt="" class="img-round img-thumbnail"
+                                style="border-radius: 50%; width: 200px;" />
                             <%}%>
                         </div>
                     </div>
