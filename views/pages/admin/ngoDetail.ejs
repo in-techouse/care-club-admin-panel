@@ -17,6 +17,7 @@
         <h5 class="card-title"><%= ngo.name %>'s Detail</h5>
         <div class="container emp-profile">
             <form method="post">
+                <input type="hidden" value="<%= ngo.id %>" class="form-control" id="ngoId" />
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
@@ -102,190 +103,55 @@
                     <div class="col-md-8">
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="payment" role="tabpanel" aria-labelledby="payment-tab">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>User Id</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Kshiti123</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Name</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Kshiti Ghelani</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Email</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>kshitighelani@gmail.com</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Phone</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>123 456 7890</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Profession</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Web Developer and Designer</p>
-                                    </div>
-                                </div>
+                                <table class="mb-0 table table-bordered" id="ngoPaymentMethod">
+                                    <thead>
+                                        <tr>
+                                            <th>NAME</th>
+                                            <th>PROVIDER NAME</th>
+                                            <th>ACCOUNT HOLDER NAME</th>
+                                            <th>ACCOUNT NUMBER</th>
+                                        </tr>
+                                    </thead>
+                                </table>
                             </div>
                             <div class="tab-pane fade" id="products" role="tabpanel" aria-labelledby="products-tab">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Experience</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Expert</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Hourly Rate</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>10$/hr</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Total Projects</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>230</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>English Level</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Expert</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Availability</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>6 months</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label>Your Bio</label><br />
-                                        <p>Your detail description</p>
-                                    </div>
-                                </div>
+                                <table class="mb-0 table table-bordered" id="ngoProducts">
+                                    <thead>
+                                        <tr>
+                                            <th>NAME</th>
+                                            <th>CATEGORY</th>
+                                            <th>QUANTITY</th>
+                                            <th>CONTACT</th>
+                                            <th>DETAILS</th>
+                                        </tr>
+                                    </thead>
+                                </table>
                             </div>
                             <div class="tab-pane fade" id="riders" role="tabpanel" aria-labelledby="riders-tab">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Experience</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Expert</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Hourly Rate</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>10$/hr</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Total Projects</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>230</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>English Level</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Expert</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Availability</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>6 months</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label>Your Bio</label><br />
-                                        <p>Your detail description</p>
-                                    </div>
-                                </div>
+                                <table class="mb-0 table table-bordered" id="ngoRiders">
+                                    <thead>
+                                        <tr>
+                                            <th>NAME</th>
+                                            <th>EMAIL</th>
+                                            <th>CONTACT</th>
+                                            <th>DETAILS</th>
+                                        </tr>
+                                    </thead>
+                                </table>
                             </div>
                             <div class="tab-pane fade" id="donations" role="tabpanel" aria-labelledby="donations-tab">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Experience</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Expert</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Hourly Rate</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>10$/hr</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Total Projects</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>230</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>English Level</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>Expert</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <label>Availability</label>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>6 months</p>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <label>Your Bio</label><br />
-                                        <p>Your detail description</p>
-                                    </div>
-                                </div>
+                                <table class="mb-0 table table-bordered" id="ngoDonations">
+                                    <thead>
+                                        <tr>
+                                            <th>USER NAME</th>
+                                            <th>AMOUNT</th>
+                                            <th>DATE TIME</th>
+                                            <th>PROVIDER NAME</th>
+                                            <th>ACCOUNT HOLDER NAME</th>
+                                            <th>ACCOUNT NUMBER</th>
+                                        </tr>
+                                    </thead>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -294,3 +160,5 @@
         </div>
     </div>
 </div>
+
+<script src="/public/js/admin/ngoDetail.js"></script>

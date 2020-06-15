@@ -14,7 +14,16 @@
   <!-- Script Files -->
   <script src="/public/js/jQuery/jquery-3.4.1.js"></script>
   <script src="/public/scripts/main.js"></script>
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
 
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-storage.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-database.js"></script>
+
+  <script src="/public/js/mainScript.js"></script>
 </head>
 
 <body>
@@ -25,7 +34,7 @@
       <% extend ('../../admin_layout')%>
 
       <div class="app-main__outer">
-        <div class="app-main__inner">          
+        <div class="app-main__inner">
           <%- content %>
         </div>
       </div>

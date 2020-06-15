@@ -3,9 +3,9 @@ var firebase = require("firebase");
 var router = express.Router();
 
 router.get("/", function (req, res) {
-  if (!req.session.isAdmin) {
-    res.redirect("/");
-  }
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
   res.render("pages/admin/index", {
     action: "dashboard",
     admin: req.session,
@@ -13,9 +13,9 @@ router.get("/", function (req, res) {
 });
 
 router.get("/allngos", function (req, res) {
-  if (!req.session.isAdmin) {
-    res.redirect("/");
-  }
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
 
   let ngos = [];
   firebase
@@ -44,9 +44,9 @@ router.get("/allngos", function (req, res) {
 });
 
 router.get("/approvedNgos", function (req, res) {
-  if (!req.session.isAdmin) {
-    res.redirect("/");
-  }
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
 
   let ngos = [];
   firebase
@@ -76,9 +76,9 @@ router.get("/approvedNgos", function (req, res) {
 });
 
 router.get("/blockedNgos", function (req, res) {
-  if (!req.session.isAdmin) {
-    res.redirect("/");
-  }
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
 
   let ngos = [];
   firebase
@@ -108,9 +108,9 @@ router.get("/blockedNgos", function (req, res) {
 });
 
 router.get("/pendingNgos", function (req, res) {
-  if (!req.session.isAdmin) {
-    res.redirect("/");
-  }
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
 
   let ngos = [];
   firebase
@@ -140,9 +140,9 @@ router.get("/pendingNgos", function (req, res) {
 });
 
 router.get("/alluser", function (req, res) {
-  if (!req.session.isAdmin) {
-    res.redirect("/");
-  }
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
 
   let users = [];
   firebase
@@ -172,9 +172,10 @@ router.get("/alluser", function (req, res) {
 });
 
 router.get("/ngoDetail", function (req, res) {
-  if (!req.session.isAdmin) {
-    res.redirect("/");
-  }
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
+
   firebase
     .database()
     .ref()
@@ -194,9 +195,9 @@ router.get("/ngoDetail", function (req, res) {
 });
 
 router.get("/approveNgo", function (req, res) {
-  if (!req.session.isAdmin) {
-    res.redirect("/");
-  }
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
 
   firebase
     .database()
@@ -214,9 +215,9 @@ router.get("/approveNgo", function (req, res) {
 });
 
 router.get("/blockNgo", function (req, res) {
-  if (!req.session.isAdmin) {
-    res.redirect("/");
-  }
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
 
   firebase
     .database()
@@ -234,9 +235,9 @@ router.get("/blockNgo", function (req, res) {
 });
 
 router.get("/userDetail", function (req, res) {
-  if (!req.session.isAdmin) {
-    res.redirect("/");
-  }
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
 
   firebase
     .database()
@@ -267,6 +268,137 @@ router.get("/userDetail", function (req, res) {
     })
     .catch((e) => {
       res.redirect("/admin/alluser");
+    });
+});
+
+router.get("/products", function (req, res) {
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
+
+  firebase
+    .database()
+    .ref()
+    .child("Products")
+    .once("value")
+    .then((data) => {
+      let products = [];
+      data.forEach((product) => {
+        products.push(product.val());
+      });
+      res.render("pages/admin/products", {
+        action: "products",
+        admin: req.session,
+        products: products,
+        actionLabel: "All Products",
+      });
+    })
+    .catch((e) => {
+      res.redirect("/admin/products");
+    });
+});
+
+router.get("/claimedProducts", function (req, res) {
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
+
+  firebase
+    .database()
+    .ref()
+    .child("Products")
+    .once("value")
+    .then((data) => {
+      let products = [];
+      data.forEach((product) => {
+        if (
+          product.val().ngoid !== null &&
+          product.val().ngoid !== undefined &&
+          product.val().ngoid.length > 1
+        ) {
+          products.push(product.val());
+        }
+      });
+      res.render("pages/admin/products", {
+        action: "claimedProducts",
+        admin: req.session,
+        products: products,
+        actionLabel: "Claimed Products",
+      });
+    })
+    .catch((e) => {
+      res.redirect("/admin/products");
+    });
+});
+
+router.get("/unclaimedProducts", function (req, res) {
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
+
+  firebase
+    .database()
+    .ref()
+    .child("Products")
+    .once("value")
+    .then((data) => {
+      let products = [];
+      data.forEach((product) => {
+        if (
+          product.val().ngoid === null ||
+          product.val().ngoid === undefined ||
+          product.val().ngoid.length < 1
+        ) {
+          products.push(product.val());
+        }
+      });
+      res.render("pages/admin/products", {
+        action: "unclaimedProducts",
+        admin: req.session,
+        products: products,
+        actionLabel: "Unclaimed Products",
+      });
+    })
+    .catch((e) => {
+      res.redirect("/admin/products");
+    });
+});
+
+router.get("/productDetail", function (req, res) {
+  // if (!req.session.isAdmin) {
+  //   res.redirect("/");
+  // }
+  if (
+    req.query.id === null ||
+    req.query.id === undefined ||
+    req.query.id.length < 1
+  ) {
+    res.redirect("/admin/products");
+  }
+  firebase
+    .database()
+    .ref()
+    .child("Products")
+    .child(req.query.id)
+    .once("value")
+    .then((product) => {
+      firebase
+        .database()
+        .ref()
+        .child("Users")
+        .child(product.val().userId)
+        .once("value")
+        .then((user) => {
+          res.render("pages/admin/productDetail", {
+            action: "productDetail",
+            admin: req.session,
+            product: product.val(),
+            user: user.val(),
+          });
+        });
+    })
+    .catch((e) => {
+      res.redirect("/admin/products");
     });
 });
 

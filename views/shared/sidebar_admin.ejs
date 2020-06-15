@@ -73,6 +73,32 @@
                         <i class="metismenu-icon fa fa-users"></i>All User's Details
                     </a>
                 </li>
+                <li class="<%= action.includes("product") || action.includes("Product") ? "mm-active" : "" %>">
+                    <a href="#">
+                        <i class="metismenu-icon fa fa-cubes fa-w-6"></i>
+                        Products
+                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                    </a>
+                    <ul>
+                        <li>
+                            <a href="/admin/products" class="<%= action == "products" ? "mm-active" : "" %>">
+                                All Products
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/claimedProducts"
+                                class="<%= action == "claimedProducts" ? "mm-active" : "" %>">
+                                Claimed Products
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/admin/unclaimedProducts"
+                                class="<%= action == "unclaimedProducts" ? "mm-active" : "" %>">
+                                Unclaimed Products
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
