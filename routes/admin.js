@@ -246,25 +246,31 @@ router.get("/userDetail", function (req, res) {
     .child(req.query.id)
     .once("value")
     .then((data) => {
-      let products = [];
-      firebase
-        .database()
-        .ref()
-        .child("Products")
-        .orderByChild("userId")
-        .equalTo(req.query.id)
-        .once("value")
-        .then((p) => {
-          p.forEach((n) => {
-            products.push(n.val());
-          });
-          res.render("pages/admin/userDetail", {
-            user: data.val(),
-            action: "userDetail",
-            admin: req.session,
-            products: products,
-          });
-        });
+      res.render("pages/admin/userDetail", {
+        user: data.val(),
+        typeText: data.val().role === 0 ? "User" : "Rider",
+        action: "userDetail",
+        admin: req.session,
+      });
+      // let products = [];
+      // firebase
+      //   .database()
+      //   .ref()
+      //   .child("Products")
+      //   .orderByChild("userId")
+      //   .equalTo(req.query.id)
+      //   .once("value")
+      //   .then((p) => {
+      //     p.forEach((n) => {
+      //       products.push(n.val());
+      //     });
+      //     res.render("pages/admin/userDetail", {
+      //       user: data.val(),
+      //       action: "userDetail",
+      //       admin: req.session,
+      //       products: products,
+      //     });
+      //   });
     })
     .catch((e) => {
       res.redirect("/admin/alluser");
