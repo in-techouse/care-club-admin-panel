@@ -1,7 +1,5 @@
 $(document).ready(function () {
-  console.log("NGO Detail Document is ready");
   const ngoId = $("#ngoId").val();
-  console.log("NGO Id: ", ngoId);
   loadPaymentMethods(ngoId);
   loadDonations(ngoId);
   loadRiders(ngoId);

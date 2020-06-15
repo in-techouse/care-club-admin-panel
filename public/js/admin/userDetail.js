@@ -1,10 +1,6 @@
 $(document).ready(function () {
-  console.log("User Detail Document is ready");
   const userId = $("#userId").val();
-  console.log("User Id: ", userId);
-
   const userRole = $("#userRole").val();
-  console.log("User Role: ", userRole);
   if (userRole === "0") {
     loadUserProducts(userId);
     loadUserDonations(userId);
@@ -39,7 +35,6 @@ function loadUserProducts(userId) {
 }
 
 function loadUserDonations(userId) {
-  console.log("Load User donations called");
   firebase
     .database()
     .ref()
@@ -48,7 +43,6 @@ function loadUserDonations(userId) {
     .equalTo(userId)
     .once("value")
     .then((donations) => {
-      console.log("User donations are: ", donations.numChildren());
       donations.forEach((donation) => {
         firebase
           .database()
