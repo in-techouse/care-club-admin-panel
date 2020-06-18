@@ -111,6 +111,8 @@
             <div class="col-md-3"></div>
         </div>
         <%} else if (product.riderId !== null && product.riderId !== undefined && product.riderId.length > 1) {%>
+        <script src="/public/js/ngo/productDetail.js"></script>
+        <input type="hidden" value="<%= product.riderId %>" id="riderId" />
         <div class="col-md-4 col-sm-12 col-xs-12">
             <div class="row">
                 <div class="col-md-12">
@@ -118,15 +120,19 @@
                 </div>
 
                 <div class="col-md-12">
-                    <h1><%= user.fname%> <%= user.lname %></h1>
+                    <h1 id="riderName"></h1>
                 </div>
                 <div class="col-md-12">
                     <p id="pricing">Email</p>
-                    <h5 id="price"><%= user.email %></h5>
+                    <h5 id="riderEmail"></h5>
                 </div>
                 <div class="col-md-12">
                     <p id="pricing">Contact</p>
-                    <h5 id="price"><%= user.phone %></h5>
+                    <h5 id="riderContact"></h5>
+                </div>
+                <div class="col-md-12">
+                    <p id="pricing">Product Picked</p>
+                    <h5><%= product.isPicked === true ? "YES" : "NO"%></h5>
                 </div>
             </div>
         </div>
