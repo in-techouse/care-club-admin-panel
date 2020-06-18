@@ -12,34 +12,21 @@
     </div>
 </div>
 <div class="main-card mb-3 card">
+    <input type="hidden" id="ngoId" value="<%= ngo.ngoId %>" />
     <div class="card-body">
-        <h5 class="card-title">ALL DONATIONS </h5>
-        <table class="mb-0 table table-bordered">
+        <h5 class="card-title">ALL DONATIONS</h5>
+        <table class="mb-0 table table-bordered" id="myDonations">
             <thead>
                 <tr>
-                    <th>UserID</th>
+                    <th>User Name</th>
                     <th>Amount</th>
                     <th>Date</th>
-                
+                    <th>Payment Method</th>
+                    <th>Account Holder Name</th>
+                    <th>Account Number</th>
                 </tr>
             </thead>
-            <tbody>
-                <% donations.forEach((u)=>{%>
-                <tr>
-                    <td>
-                        <%= u.userId %>
-                    </td>
-                    <td>
-                        <%= u.amount %> RS
-                    </td>
-                    <td>
-                        <%= u.date %>
-                    </td>
-
-            
-                </tr>
-                <%});%>
-            </tbody>
         </table>
     </div>
 </div>
+<script src="/public/js/ngo/myDonations.js"></script>

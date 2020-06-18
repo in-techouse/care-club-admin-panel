@@ -38,7 +38,9 @@
                         <div class="widget-content-left">
                             <div class="btn-group">
                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                    <img width="42" class="rounded-circle" src="assets/images/avatars/1.jpg" alt="">
+                                    <% if (ngo.image !== null && ngo.image.length > 1 ){%>
+                                    <img width="42" class="rounded-circle" src="<%= ngo.image %>" alt="">
+                                    <%}%>
                                     <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                 </a>
                                 <div tabindex="-1" role="menu" aria-hidden="true"
@@ -74,11 +76,11 @@
                                 <%= ngo.email %>
                             </div>
                         </div>
-                        <div class="widget-content-right header-user-info ml-3">
+                        <!-- <div class="widget-content-right header-user-info ml-3">
                             <button type="button" class="btn-shadow p-1 btn btn-primary btn-sm show-toastr-example">
                                 <i class="fa text-white fa-calendar pr-1 pl-1"></i>
                             </button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

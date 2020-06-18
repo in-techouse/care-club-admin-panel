@@ -203,6 +203,23 @@ router.get("/claimProduct", function (req, res) {
     });
 });
 
+// Assign Product
+router.post("/assignProduct", function (req, res) {
+  firebase
+    .database()
+    .ref()
+    .child("Products")
+    .child(req.body.productId)
+    .child("riderId")
+    .set(req.body.riderId)
+    .then((r) => {
+      res.redirect("/ngo/myProducts");
+    })
+    .catch((e) => {
+      res.redirect("/ngo/myProducts");
+    });
+});
+
 // Action Add Payment Method
 router.get("/adPayment", function (req, res) {
   if (!req.session.isNGO) {
@@ -408,7 +425,7 @@ router.get("/myProducts", function (req, res) {
     });
 });
 
-router.get("/paymentDetail", function (req, res) {
+router.get("/paymentEdit", function (req, res) {
   if (!req.session.isNGO) {
     res.redirect("/");
   }
@@ -420,11 +437,43 @@ router.get("/paymentDetail", function (req, res) {
     .child(req.query.id)
     .once("value")
     .then((data) => {
-      res.render("pages/ngos/paymentDetail", {
+      res.render("pages/ngos/paymentEdit", {
         ngo: req.session,
         payment: data.val(),
-        action: "paymentDetail",
+        action: "paymentEdit",
       });
+    })
+    .catch((e) => {
+      res.redirect("/ngo/mypayment");
+    });
+});
+
+router.post("/paymentEdit", function (req, res) {
+  if (!req.session.isNGO) {
+    res.redirect("/");
+  }
+
+  firebase
+    .database()
+    .ref()
+    .child("PaymentMethods")
+    .child(req.body.id)
+    .once("value")
+    .then((data) => {
+      let payment = data.val();
+      payment.name = req.body.Name;
+      payment.providerName = req.body.ProviderName;
+      payment.accountNumber = req.body.accountNumber;
+      payment.accountHolderName = req.body.accountHolderName;
+      firebase
+        .database()
+        .ref()
+        .child("PaymentMethods")
+        .child(req.body.id)
+        .set(payment)
+        .then((d) => {
+          res.redirect("/ngo/mypayment");
+        });
     })
     .catch((e) => {
       res.redirect("/ngo/mypayment");

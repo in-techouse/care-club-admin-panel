@@ -21,7 +21,7 @@
                     <th>Provider Name</th>
                     <th>Account Holder Name</th>
                     <th>Account Number</th>
-                    <th>DETAILS</th>
+                    <th>EDIT</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,7 +40,7 @@
                         <%= u.accountNumber %>
                     </td>
                     <td>
-                        <a href="/ngo/paymentDetail?id=<%= u.id%>" class="btn btn-sm btn-primary">Details</a>
+                        <a href="/ngo/paymentEdit?id=<%= u.id%>" class="btn btn-sm btn-warning">EDIT</a>
                     </td>
                 </tr>
                 <%});%>

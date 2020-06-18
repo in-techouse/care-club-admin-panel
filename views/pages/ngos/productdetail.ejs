@@ -14,6 +14,13 @@
 </div>
 
 <div class="main-card mb-3 card">
+    <input type="hidden" id="ngoId" value="<%= ngo.ngoId %>" />
+    <input type="hidden" id="isTaken" value="<%= product.taken %>" />
+    <input type="hidden" id="productNgoId" value="<%= product.ngoid %>" />
+    <input type="hidden" id="productId" value="<%= product.id %>" />
+
+
+
     <div class="container-fluid productWrapper">
         <div class="row">
             <div class="col-md-4 col-sm-12 col-xs-12">
@@ -72,11 +79,9 @@
                         <h5 id="price"><%= user.phone %></h5>
                     </div>
                 </div>
-
             </div>
         </div>
         <% if (product.taken === false ) { %>
-
         <div class="row" style="padding-top: 30px; padding-bottom: 30px;">
             <div class="col-md-4"></div>
             <div class="col-md-4">
@@ -86,5 +91,51 @@
             <div class="col-md-4"></div>
         </div>
         <%} %>
+
+        <% if (product.taken === true && product.ngoid === ngo.ngoId && (product.riderId === null || product.riderId === undefined || product.riderId.length < 1)){%>
+        <div class="row" style="padding-top: 30px; padding-bottom: 30px;">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <form method="POST" action="/ngo/assignProduct">
+                    <input name="productId" type="hidden" value="<%= product.id %>" />
+                    <div class="form-group">
+                        <label for="riderId">Select the rider</label>
+                        <select class="form-control" name="riderId" id="riderId">
+
+                        </select>
+                    </div>
+
+                    <input type="submit" value="ASSIGN PRODUCT" class="btn btn-primary btn-block" />
+                </form>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        <%} else if (product.riderId !== null && product.riderId !== undefined && product.riderId.length > 1) {%>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>Assigned to,</h2>
+                </div>
+
+                <div class="col-md-12">
+                    <h1><%= user.fname%> <%= user.lname %></h1>
+                </div>
+                <div class="col-md-12">
+                    <p id="pricing">Email</p>
+                    <h5 id="price"><%= user.email %></h5>
+                </div>
+                <div class="col-md-12">
+                    <p id="pricing">Contact</p>
+                    <h5 id="price"><%= user.phone %></h5>
+                </div>
+            </div>
+        </div>
+        <%}%>
+
+
+
+
     </div>
 </div>
+
+<script src="/public/js/ngo/assignProduct.js"></script>

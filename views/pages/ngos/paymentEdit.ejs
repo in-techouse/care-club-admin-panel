@@ -1,0 +1,68 @@
+<% extend ('../../layout')%>
+<link rel="stylesheet" type="text/css" href="/public/bootstrap/custom.css" />
+<div class="app-page-title">
+    <div class="page-title-wrapper">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="metismenu-icon fa fa-money-bill fa-w-6 icon-gradient bg-mean-fruit"></i>
+            </div>
+            <div class="row">
+                Payment Method Detail
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">Edit Payment Method</h5>
+        <form method="POST" action="/ngo/paymentEdit">
+            <div class="form-row">
+
+                <!-- Start from here -->
+                <div class="col-md-2"></div>
+
+                <div class="col-md-8">
+                    <input name="id" type="hidden" value="<%= payment.id %>" />
+                    <!-- One Field -->
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input name="Name" type="text" class="form-control" placeholder="Name" required
+                            value="<%= payment.name %>" />
+                    </div>
+                    <!-- 2nd Field -->
+                    <div class="form-group">
+                        <label>Provider Name</label>
+                        <select name="ProviderName" class="form-control" required>
+                            <option <%= payment.providerName === "JazzCash Account" ? "selected": "" %>
+                                value="JazzCash Account">JazzCash Account</option>
+                            <option <%= payment.providerName === "UPaisa Account" ? "selected": "" %>
+                                value="UPaisa Account">UPaisa Account</option>
+                            <option <%= payment.providerName === "EasyPaisa Account" ? "selected": "" %>
+                                value="EasyPaisa Account">EasyPaisa Account</option>
+                            <option <%= payment.providerName === "Bank Account Account" ? "selected": "" %>
+                                value="Bank Account Account">Bank Account Account</option>
+
+                        </select>
+                    </div>
+                    <!-- 3rd Field -->
+                    <div class="form-group">
+                        <label>Account Number</label>
+                        <input name="accountNumber" type="text" class="form-control" placeholder="Account Number"
+                            required value="<%= payment.accountNumber %>" />
+                    </div>
+                    <div class="form-group">
+                        <label>Account Holder Name</label>
+                        <input name="accountHolderName" type="text" class="form-control"
+                            placeholder="Account Holder Name" required value="<%= payment.accountHolderName %>" />
+                    </div>
+                </div>
+
+                <div class="col-md-2"></div>
+                <!-- Code end -->
+
+            </div>
+            <button class="btn btn-primary" type="submit" style="float: right;">SAVE PAYMENT METHOD</button>
+        </form>
+    </div>
+</div>

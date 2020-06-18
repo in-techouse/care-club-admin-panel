@@ -15,6 +15,92 @@
     </div>
 </div>
 
-<div class="row">
-    <h1>NGO Dashboard Page</h1>
+<!-- Related to PRODUCTS -->
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <input type="hidden" id="ngoId" value="<%= ngo.ngoId %>" />
+        <h5 class="card-title">PRODUCTS</h5>
+        <div class="row">
+            <div class="col-md-4 col-xl-4">
+                <div class="card mb-3 widget-content bg-midnight-bloom">
+                    <div class="widget-content-wrapper text-white">
+                        <div class="widget-content-left">
+                            <div class="widget-heading">Total PRODUCTS</div>
+                        </div>
+                        <div class="widget-content-right">
+                            <div class="widget-numbers text-white" id="totalProducts"><span>0</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xl-4">
+                <div class="card mb-3 widget-content bg-arielle-smile">
+                    <div class="widget-content-wrapper text-white">
+                        <div class="widget-content-left">
+                            <div class="widget-heading">Claimed by Us</div>
+                        </div>
+                        <div class="widget-content-right">
+                            <div class="widget-numbers text-white" id="claimedProducts"><span>0</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xl-4">
+                <div class="card mb-3 widget-content bg-grow-early">
+                    <div class="widget-content-wrapper text-white">
+                        <div class="widget-content-left">
+                            <div class="widget-heading">Open PRODUCTS</div>
+                        </div>
+                        <div class="widget-content-right">
+                            <div class="widget-numbers text-white" id="openProducts"><span>0</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+<!-- Related to RIDERS -->
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">RIDERS</h5>
+        <div class="row">
+            <div class="col-md-12 col-xl-12">
+                <div class="card mb-3 widget-content bg-midnight-bloom">
+                    <div class="widget-content-wrapper text-white">
+                        <div class="widget-content-left">
+                            <div class="widget-heading">Total Riders</div>
+                        </div>
+                        <div class="widget-content-right">
+                            <div class="widget-numbers text-white" id="totalRiders"><span>0</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Related to DONATIONS -->
+<div class="main-card mb-3 card">
+    <div class="card-body">
+        <h5 class="card-title">DONATIONS</h5>
+        <div class="row">
+            <div class="col-md-12 col-xl-12">
+                <div class="card mb-3 widget-content bg-midnight-bloom">
+                    <div class="widget-content-wrapper text-white">
+                        <div class="widget-content-left">
+                            <div class="widget-heading">Total Donatons</div>
+                        </div>
+                        <div class="widget-content-right">
+                            <div class="widget-numbers text-white" id="totalDonations"><span>0</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/public/js/ngo/dashboard.js"></script>
