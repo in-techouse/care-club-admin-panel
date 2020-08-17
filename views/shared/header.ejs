@@ -3,8 +3,7 @@
         <div class="logo-src"></div>
         <div class="header__pane ml-auto">
             <div>
-                <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
-                    data-class="closed-sidebar">
+                <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
                     <span class="hamburger-box">
                         <span class="hamburger-inner"></span>
                     </span>
@@ -27,7 +26,7 @@
                 <span class="btn-icon-wrapper">
                     <i class="fa fa-ellipsis-v fa-w-6"></i>
                 </span>
-            </button>
+        </button>
         </span>
     </div>
     <div class="app-header__content">
@@ -38,27 +37,22 @@
                         <div class="widget-content-left">
                             <div class="btn-group">
                                 <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="p-0 btn">
-                                    <% if (ngo.image !== null && ngo.image.length > 1 ){%>
-                                    <img width="42" class="rounded-circle" src="<%= ngo.image %>" alt="">
-                                    <%}%>
-                                    <i class="fa fa-angle-down ml-2 opacity-8"></i>
+                                    <% if (ngo.image !== undefined && ngo.image.length > 1 ){%>
+                                        <img width="42" class="rounded-circle" src="<%= ngo.image %>" alt="">
+                                        <%}%>
+                                            <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                 </a>
-                                <div tabindex="-1" role="menu" aria-hidden="true"
-                                    class="dropdown-menu dropdown-menu-right">
+                                <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                     <a href="/ngo/myDonations" class="btn dropdown-item">
-                                        <i class="metismenu-icon fa fa-money-bill fa-w-6"
-                                            style="margin-right: 5px;"></i>
-                                        My Donations
+                                        <i class="metismenu-icon fa fa-money-bill fa-w-6" style="margin-right: 5px;"></i> My Donations
                                     </a>
                                     <div tabindex="-1" class="dropdown-divider"></div>
                                     <a href="/ngo/myProducts" class="btn dropdown-item">
-                                        <i class="metismenu-icon fa fa-cube" style="margin-right: 5px;"></i>
-                                        My Products
+                                        <i class="metismenu-icon fa fa-cube" style="margin-right: 5px;"></i> My Products
                                     </a>
                                     <div tabindex="-1" class="dropdown-divider"></div>
                                     <a href="/ngo/myprofile" class="btn dropdown-item">
-                                        <i class="metismenu-icon fa fa-users" style="margin-right: 5px;"></i>
-                                        My Profile
+                                        <i class="metismenu-icon fa fa-users" style="margin-right: 5px;"></i> My Profile
                                     </a>
                                     <div tabindex="-1" class="dropdown-divider"></div>
                                     <a href="/logout" class="btn dropdown-item">
