@@ -143,7 +143,7 @@ router.post("/registeration", function(req, res) {
         id: id,
         images: [],
         paymentMethods: [],
-        approved: false,
+        approved: 0,
     };
     if (password === passwordConfirmation) {
         firebase
