@@ -1,78 +1,99 @@
 <% extend ('../../admin_layout')%>
-<link rel="stylesheet" type="text/css" href="/public/bootstrap/productDetail.css" />
-<div class="app-page-title">
-    <div class="page-title-wrapper">
-        <div class="page-title-heading">
-            <div class="page-title-icon">
-                <i class="metismenu-icon fa fa-cubes fa-w-6 icon-gradient bg-mean-fruit"></i>
-            </div>
-            <div>
-                Product Detail
+    <link rel="stylesheet" type="text/css" href="/public/bootstrap/productDetail.css" />
+    <div class="app-page-title">
+        <div class="page-title-wrapper">
+            <div class="page-title-heading">
+                <div class="page-title-icon">
+                    <i class="metismenu-icon fa fa-cubes fa-w-6 icon-gradient bg-mean-fruit"></i>
+                </div>
+                <div>
+                    Product Detail
+                </div>
             </div>
         </div>
     </div>
-</div>
-<div class="main-card mb-3 card">
-    <div class="container-fluid productWrapper">
-        <div class="row">
-            <div class="col-md-4 col-sm-12 col-xs-12">
-                <ul class="images">
-                    <li class="big-img">
-                        <img src="<%= product.images[0] %>" />
-                    </li>
-                    <% product.images.forEach(i=>{%>
-                    <li>
-                        <img src="<%= i %>" />
-                    </li>
-                    <%})%>
-                </ul>
-            </div>
-            <div class="col-md-4 col-sm-12 col-xs-12">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h1><%= product.name %></h1>
-                    </div>
+    <div class="main-card mb-3 card">
+        <div class="container-fluid productWrapper">
+            <div class="row">
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <ul class="images">
+                        <li class="big-img">
+                            <img src="<%= product.images[0] %>" />
+                        </li>
+                        <% product.images.forEach(i=>{%>
+                            <li>
+                                <img src="<%= i %>" />
+                            </li>
+                            <%})%>
+                    </ul>
+                </div>
+                <div class="col-md-4 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>
+                                <%= product.name %>
+                            </h1>
+                        </div>
 
-                    <div class="col-md-12">
-                        <h2><%= product.category%></h2>
+                        <div class="col-md-12">
+                            <h2>
+                                <%= product.category%>
+                            </h2>
+                        </div>
+                    </div>
+                    <p>
+                        <%= product.description %>
+                    </p>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p id="pricing">Address</p>
+                            <h5 id="price">
+                                <%= product.address %>
+                            </h5>
+                        </div>
+                        <div class="col-md-12 col-sm-12">
+                            <p id="pricing">Contact Number</p>
+                            <h5 id="price">
+                                <%= product.phoneno %>
+                            </h5>
+                        </div>
+                        <div class="col-md-12">
+                            <p id="pricing">Quantity</p>
+                            <h5 id="price">
+                                <%= product.quantityOfProducts %>
+                            </h5>
+                        </div>
                     </div>
                 </div>
-                <p><%= product.description %></p>
-                <div class="row">
-                    <div class="col-md-12">
-                        <p id="pricing">Address</p>
-                        <h5 id="price"><%= product.address %></h5>
-                    </div>
-                    <div class="col-md-12 col-sm-12">
-                        <p id="pricing">Contact Number</p>
-                        <h5 id="price"><%= product.phoneno %></h5>
-                    </div>
-                    <div class="col-md-12">
-                        <p id="pricing">Quantity</p>
-                        <h5 id="price"><%= product.quantityOfProducts %></h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-12 col-xs-12">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2>Posted by,</h2>
-                    </div>
+                <% if (user != null){%>
+                    <div class="col-md-4 col-sm-12 col-xs-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h2>Posted by,</h2>
+                            </div>
 
-                    <div class="col-md-12">
-                        <h1><%= user.fname%> <%= user.lname %></h1>
-                    </div>
-                    <div class="col-md-12">
-                        <p id="pricing">Email</p>
-                        <h5 id="price"><%= user.email %></h5>
-                    </div>
-                    <div class="col-md-12">
-                        <p id="pricing">Contact</p>
-                        <h5 id="price"><%= user.phone %></h5>
-                    </div>
-                </div>
+                            <div class="col-md-12">
+                                <h1>
+                                    <%= user.fname%>
+                                        <%= user.lname %>
+                                </h1>
+                            </div>
+                            <div class="col-md-12">
+                                <p id="pricing">Email</p>
+                                <h5 id="price">
+                                    <%= user.email %>
+                                </h5>
+                            </div>
+                            <div class="col-md-12">
+                                <p id="pricing">Contact</p>
+                                <h5 id="price">
+                                    <%= user.phone %>
+                                </h5>
+                            </div>
+                        </div>
 
+                    </div>
+                    <%}%>
             </div>
         </div>
     </div>
-</div>
